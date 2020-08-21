@@ -1,0 +1,7 @@
+{% extends "admin_amp/base.amp.html" %}
+{% load static %}
+{% block content %}
+  {% for p in query %}
+      <h1>{{p}}</h1>
+  {% endfor %}
+{% endblock %}

@@ -1,0 +1,18 @@
+{% block title %} Login {% endblock title %} {% block content %}
+
+<body>
+    <h1>Login 1</h1>
+    <form class="form-login" method="POST">
+        {% csrf_token %}
+        <label for="username">username:
+            <input id="username" type="text" name="username" value="{{ username }}">
+        </label><br>
+        <label for="password">password:
+            <input id="password" type="password" name="password" value="{{ password }}">
+        </label> <br>
+        <button type="submit">LOGIN</button>
+    </form>
+</body>
+{% endblock %}
+
+</html>

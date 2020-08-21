@@ -1,0 +1,45 @@
+{% extends "amp/base.amp.html" %}
+{% block title %}
+Contact
+{% endblock %}
+
+{% block content %}
+    <h1 class="contato home-text">Contato</h2>
+    <div class="box-form">
+
+        <form method="POST" action-xhr="{% url 'contact' %}">
+            {% csrf_token %}
+            <label for="nome">              
+                <h3 class="filter-text">Nome:</h3>
+                <input class="box-form" name="nome" type="text">
+            </label>
+            <label for="phone">
+                <h3 class="filter-text">Telefone:</h3>
+                <input class="box-form" name="phone" type="tel" maxlength="14" placeholder="xxxx-xxxxx" value="+5521">
+            </label>
+            <label for="email">
+                <h3 class="filter-text">Email:</h3>
+                <input class="box-form" name="email" type="email" placeholder="xxxxx@email.com">
+            </label>
+            <label for="email">
+                <h3 class="filter-text">Mensagem:</h3>
+                <textarea class="box-form" name="mensagem" rows="5" cols="40" placeholder="O que gostaria de nos dizer"></textarea>
+            </label>
+        </form>
+        <button class="buy" type="submit">Enviar</button>
+        <div class="endereco">
+            <h2 class="filter-text">Lojas:</h2>
+            <h3 class="contact-text">JR Kids</h3>
+            <p class="contact-text">Av. Carlos Marighella, nº 737 Loja 2, Itaipuaçu</p>
+            <p class="contact-text">Maricá, RJ</p>
+        </div>
+        <div class="contact">
+            <h2 class="filter-text">Telefones:</h2>
+            <h3 class="contact-text">JR Kids</h3>
+            <p class="contact-text">+55 21 99453-4836</p>
+        </div>
+        </div>
+        <div class="google">
+            <amp-iframe width="1400" height="500" sandbox="allow-scripts allow-same-origin" layout="responsive" frameborder="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.3295575019347!2d-43.06997568555951!3d-22.93808704475414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x99868e03ed4c95%3A0xb8bee12a7e12e16c!2sR.%20Jorn.%20Ramiro%20Cruz%2C%2029%20-%20Piratininga%2C%20Niter%C3%B3i%20-%20RJ%2C%2024350-343!5e0!3m2!1spt-BR!2sbr!4v1573073022345!5m2!1spt-BR!2sbr"></amp-iframe>
+        </div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "amp/base.amp.html" %} {% block title %}Home {% endblock title %} {% block content %}
+
+<!-- first gallery-->
+    <div class="first top-0">
+            <amp-carousel class="home-gallery" lightbox controls autoplay delay="3000" height="100" width=190 layout="responsive" type="slides">
+                {% for B in filter1 %}
+                    <div class="slide">
+                        <amp-img class="cover" src="{{B.imagem.url}}"  width="190" height="100" layout="responsive" alt=""></amp-img>
+                    </div>
+                {% endfor %}
+            </amp-carousel>
+    </div>
+<!-- first gallery END-->
+    
+    <!--TEXT AREA-->
+    <div class="home-text">
+        <h1 class="">Bem Vindo</h1>
+        <p class="">a JR MODAS</p>
+    </div>
+    <!--TEXT AREA end -->
+    <!--double gallery -->
+    <div class="line">
+        {% for b in filter2|slice:":2" %}
+        <div class="column">
+            <amp-carousel lightbox class="mini-gallery" width="250" height="300" layout=fixed type="slides">
+                {% for pic in b.banner_image.all %}
+                    <amp-img class="" src="{{ pic.imagem.url }}" width="250" height="500" layout="fill" alt=""></amp-img>
+                {% endfor %}
+            </amp-carousel>
+            <a class="column link" href="{{b.first_banner_image.link}}"><h2 class="home-text">{{ b.nome }}</h2></a>
+        </div>
+        {% endfor %}
+</div>
+    <!--double gallery END -->
+    <!--Google Maps-->
+<div class="google">
+    <amp-iframe width="1400" height="500" sandbox="allow-scripts allow-same-origin" layout="responsive" frameborder="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.3295575019347!2d-43.06997568555951!3d-22.93808704475414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x99868e03ed4c95%3A0xb8bee12a7e12e16c!2sR.%20Jorn.%20Ramiro%20Cruz%2C%2029%20-%20Piratininga%2C%20Niter%C3%B3i%20-%20RJ%2C%2024350-343!5e0!3m2!1spt-BR!2sbr!4v1573073022345!5m2!1spt-BR!2sbr"></amp-iframe>
+</div>
+
+<!--Footer (testar no base)-->
+
+{% endblock %}

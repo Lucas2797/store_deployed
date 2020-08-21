@@ -1,0 +1,105 @@
+{% extends "amp/base.amp.html" %}
+{% load static %}
+
+{% block title %}
+    CheckOut
+{% endblock title %}
+    
+{% block content %}
+<h1 class="home-text text-h1">Carrinho</h1>
+<div class="cart">
+  <table class="cart">
+    <tr class="first">
+      <th class="first">Quantidade</th>
+      <th class="first">Produto</th>
+      <th class="first">Modelo</th>
+      <th class="first">Tamanho</th>
+      <th class="first">Preco</th>
+      <th class="first">Imagem</th>
+      <th class="first">Delete</th>
+    </tr>
+    {% for item in order_items %}
+    <tr>
+      <td class="pl15">{{ item.quantity }} </td>
+      <td><a class="link first" href="{% url 'detail_product' item.product.id %}"> {{item.product.nome}} </a></td>
+      <td> {{item.product.model}} </td>
+      <td class="pl15"> {{item.size.tamanho}} </td>
+      <td> {{item.get_item_total}} </td>
+      {% if item.product.images %}
+        <td><amp-img src="{{ item.product.images.all.first.image.url }}"
+          width="50"
+          height="50"
+          layout="fixed"
+          alt="">
+        </amp-img></td>
+      {% else %}
+        <td>Sem Imagem</td>
+      {% endif %}
+      <td class="pl15">
+        <a href="{% url 'delete_item' item.id %}" data-balloon="remove this item from cart">
+          <amp-img width="15" height="15" layout=fixed src="{% static 'icons/delete-icon2.png' %}" ></amp-img>
+        </a>
+      </td>
+    {% empty %}
+        <h1 class="first-text">Carrinho Vazio :(</h1>
+    {% endfor %}
+      {% if existing_order.get_cart_total != 0 %}
+        <tr class="total">
+            <td></td>
+            <td></td>
+            <td class="total">Total:</th>
+            <td class="total">{{existing_order.get_cart_total}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+      {% endif %}
+      </table>
+        <br>
+        <br>
+        <!-- FORM -->
+        <div class="form">
+            <h1 class="home-text">Cliente</h1>
+                <form method="POST"
+                    action-xhr="{% url 'checkout' %}">
+                    {% csrf_token %}
+                    <label class="text" for="nome">
+                        <span class="product-text">Nome:</span>
+                        <input type="text"
+                        name="nome"
+                        value="{{request.user}}"
+                        required>
+                    </label>
+                    <br>
+                    <br>
+                    <label class="text" for="email">
+                        <span class="product-text">Email:</span>
+                        <input type="email"
+                        name="email"
+                        required>
+                    </label>
+                    <br>
+                    <br>
+                    <label class="text" for="endereco">
+                        <span class="product-text">Endereço:</span>
+                        <input type="text"
+                        name="endereco"
+                        required>
+                    </label>
+                    <br>
+                    <br>
+                    <label class="text" for="phone">
+                        <span class="product-text">DDD+Telefone:</span>
+                        <input type="tel"
+                        name="phone"
+                        value="{{prof.phone}}"
+                        required>
+                        <br>
+                        <span>(entraremos em contato para confirmar o pedido)</span>
+                    </label>
+                    <br>
+                    <br>
+                    <input class="send" type="submit" value="finalizar compra">
+                </form>
+        </div>
+{% endblock %}

@@ -1,0 +1,113 @@
+{% extends "admin/base.amp.html" %}
+{% block title %}Update Product {{prod.id}} {% endblock title %}
+{% block content %}
+{% load static %}
+<body>
+    <h4>{{model_form.errors}}</h4>
+    <h4>{{prod_form.errors}}</h4>
+    <h4>{{img_form.errors}}</h4>
+    <h4>{{storage_form.errors}}</h4>
+    <h2>{{prod}}</h2><br>
+    <input name='table' type="radio" value="model_on" on='change:model-form.show, storage-form.hide, product-form.hide, img-form.hide'>Criar Modelo
+    <form id="model-form" method="POST" action-xhr="{% url 'add_modelo' %}" hidden>
+    <fieldset>
+        {% csrf_token %}
+        {{model_form.as_p}}
+        {{model_form.errors}}
+        <input type="submit"
+        value="Subscribe" name="model">
+    </fieldset>
+    </form>
+
+    <h2>Alterar Produto</h2>
+    <input name='table' type="radio" value="img_on" on='change:product-form.show, storage-form.hide, model-form.hide, img-form.hide'>Alterar produto
+    <form id='product-form' method='POST' action-xhr="{% url 'update_product' prod.id %}" hidden>
+        <fieldset>
+        {% csrf_token %}
+        {{prod_form.as_p}}
+        <input type="submit" name="producting">
+        </fieldset>
+    </form>
+
+
+    <h2>Imagem:</h2>
+    <input name='table' type="radio" value="img_on" on='change:img-form.show, images.show, storage-form.hide,  model-form.hide, product-form.hide'>Adicionar img
+    <form id="img-form" method='POST' action-xhr="{% url 'update_product' prod.id %}" enctype="multipart/form-data" target="_top" hidden>
+        <fieldset>
+        {% csrf_token %}
+            <label for="Image">
+                {{img_form}}
+            </label>
+            <input type="submit" name="img">
+        </fieldset>
+    </form>
+
+    <div id='images' hidden>
+    {% for pic in prod.images.all %}
+        <img src="{{pic.image.url}}" height="200px" width="200px" alt="">
+        <a href="{% url 'delete_image' pic.id %}" data-balloon="remove this item from cart">
+            <amp-img width="30" height="30" layout=fixed src="{% static 'icons/delete-icon2.png' %}" ></amp-img>
+        </a>
+    {% endfor %}
+    </div>
+    <br>
+    <h2>Estoques:</h2>
+    <input name='table' type="radio" value="storage_on" on='change:storage-form.show, storage-div.show, model-form.hide,img-form.hide,product-form.hide'>Adicionar estoque
+    <div id="storage-div" hidden>
+    {% for storage in prod.storage.all %}
+        <h4>Quantidade {{storage.quantidade}} Tamanho {{storage.tamanho}}</h4>
+    {% endfor %}
+    </div>
+    <form id="storage-form" method="POST" action-xhr="{% url 'update_product' prod.id %}" target="_top" hidden>
+        <fieldset>
+            {% csrf_token %}
+            <p><label for="id_product">Product:</label> <select name="product" required id="
+                id_product">
+                  <option value="{{prod.id}}" selected>{{prod}}</option>
+                </select></p>
+                <p><label for="id_quantidade">Quantidade:</label> <input type="number" name="quantidade"
+                 value="0" min="0" required id="id_quantidade"></p>
+                <p><label for="id_tamanho">Tamanho:</label> <select name="tamanho" required id="
+                id_tamanho">
+                  <option value="" selected>---------</option>
+                  <optgroup label="Adulto">
+                  <option value="P">P</option>
+                  <option value="M">M</option>
+                  <option value="G">G</option>
+                  <option value="GG">GG</option>
+                  </optgroup>
+                  <optgroup label="Infantil">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  </optgroup>
+                  <optgroup label="Calsa">
+                  <option value="36">36</option>
+                  <option value="38">38</option>
+                  <option value="40">40</option>
+                  <option value="42">42</option>
+                  <option value="44">44</option>
+                  <option value="46">46</option>
+                  <option value="48">48</option>
+                  <option value="50">50</option>
+                  </optgroup>
+                  <option value="unknown">Unknown</option>
+                </select></p>
+                <h2>{{storage_form.errors}}</h2>
+                <h2>{{storage_form.non_field_errors}}</h2>
+            <input type="submit" name="storage" value="Submit " />
+        </fieldset>
+    </form>
+</body>
+
+
+{% endblock %}

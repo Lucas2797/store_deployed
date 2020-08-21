@@ -1,0 +1,13 @@
+{% extends 'amp/base.amp.html' %}
+{% block content %}
+    <div class="automatic">
+        <form class="automatic" method="POST" action-xhr="{% url 'automatic' %}">
+            {% csrf_token %}
+            <label for="username">Olá, 
+                <input name="username" type="text">
+            </label>
+            <br>
+            <button type="submit">Bem Vindo</button>
+        </form>
+    </div>
+{% endblock %}

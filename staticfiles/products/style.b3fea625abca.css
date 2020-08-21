@@ -1,0 +1,70 @@
+
+body {
+    padding-top: 100px;
+}
+  
+.test{
+    color: red;
+}
+
+
+div.tabling {
+    align-items: center;
+    margin-left: 270px;
+    margin-top: 120px;
+    width: 1400px;
+}
+
+table.cart {
+    background-color: rgba(255, 115, 0, 0.5);
+    opacity: 90%;
+    border-style: double;
+    border-color: black;
+    border-collapse: collapse;
+}
+
+th.first {
+    font-family: 'Sriracha', cursive;
+    border-style: none;
+    color: white;
+    padding-right: 20px;
+    background-color: black;
+}
+
+tr.first {
+    opacity: 100%;
+    background-color: black;
+}
+
+td.cart {
+    font-family: 'Sriracha', cursive;
+}
+
+tr.cart {
+    background-color: rgba(255, 115, 0, 0.5);
+}
+
+tr.cart:hover {
+    background-color: rgba(255, 115, 0, 1);
+    opacity: 100%;
+}
+
+th.cart {
+    border-style: groove;
+}
+
+tr.total {
+    background-color: black;
+}
+
+div.cart-but {
+    margin-top: 50px;
+}
+
+a.cart-but {
+    margin-right: 265px;
+}
+
+.pl15 {
+    padding-left: 15px;
+}

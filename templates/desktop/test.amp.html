@@ -1,0 +1,111 @@
+{% extends "desktop/base2.amp.html" %}
+{% block title %}Teste {% endblock title %}
+{% block content %}
+{% load static %}
+<body>
+<form action-xhr="." method="GET">
+    <input id="var" type="text" name="var">
+    <input type="submit">
+</form>
+    <h1>hello, {{var}}</h1>
+<h1><h2>ok</h2></h1>
+
+
+
+</body>
+{% endblock %}
+<!-- 
+<body>
+    <h2>{{prod}}</h2>
+    {{t1}}
+    <h1>{{prod_query.count}}</h1>
+    <form method="POST" action-xhr="." target="_top">
+        {% csrf_token %}
+        {{prod_form.as_p}}
+        <button type="submit" name="producting">GO</button>
+    </form>
+    <h1>{{img_query.count}}</h1>
+    {% for p in prod.images.all %}
+        <img src="{{p.image.url}}" alt="" height="80px" width="70px">
+    {% endfor %}
+    <form method="POST" action-xhr="." target="_top" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{img_form.as_p}}
+        <h2>{{img_form.errors}}</h2>
+        <button type="submit" name="img">go</button>
+    </form>
+    <h1>{{model_query.count}}</h1>
+    <form id="model-form" method="POST" action-xhr="{% url 'add_modelo' %}" >
+        <fieldset>
+            {% csrf_token %}
+            {{model_form.as_p}}
+            {{model_form.errors}}
+            <input type="submit"
+            value="Subscribe" name="model">
+        </fieldset>
+        <div submit-success>
+            <template type="amp-mustache">
+                Subscription successful!
+            </template>
+        </div>
+        <div submit-error>
+            <template type="amp-mustache">
+                Subscription failed!
+            </template>
+        </div>
+        </form>
+    <h1>{{storage_query.count}}</h1>
+    <form method="POST" action-xhr="." target="_top">
+        {% csrf_token %}
+        <p><label for="id_product">Product:</label> <select name="product" required id="
+            id_product">
+              <option value="{{prod.id}}" selected>{{prod}}</option>
+            </select></p>
+            <p><label for="id_quantidade">Quantidade:</label> <input type="number" name="quantidade"
+             value="0" min="0" required id="id_quantidade"></p>
+            <p><label for="id_tamanho">Tamanho:</label> <select name="tamanho" required id="
+            id_tamanho">
+              <option value="" selected>---------</option>
+              <optgroup label="Adulto">
+              <option value="P">P</option>
+              <option value="M">M</option>
+              <option value="G">G</option>
+              <option value="GG">GG</option>
+              </optgroup>
+              <optgroup label="Infantil">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              </optgroup>
+              <optgroup label="Calsa">
+              <option value="36">36</option>
+              <option value="38">38</option>
+              <option value="40">40</option>
+              <option value="42">42</option>
+              <option value="44">44</option>
+              <option value="46">46</option>
+              <option value="48">48</option>
+              <option value="50">50</option>
+              </optgroup>
+              <option value="unknown">Unknown</option>
+            </select></p>
+        <h2>{{storage_form.errors}}</h2>
+        <h2>{{storage_form.non_field_errors}}</h2>
+        <button type="submit" name="storage">go</button>
+    </form>
+    
+
+    {% for e in prod.storage.all %}
+        {{e}}
+      
+    {% endfor %}
+</body> -->

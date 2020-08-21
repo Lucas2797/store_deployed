@@ -1,0 +1,914 @@
+{% load static %} {% get_media_prefix as MEDIA_PREFIX %}
+<!doctype html>
+<html ⚡>
+<html amp lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <title>{% block title %}JR Modas{% endblock %}</title>
+    <!-- AMP Canonical -->
+    <link rel="canonical" href="{% url 'home_product' %}">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <!-- AMP imports -->
+    <script async custom-element="amp-selector" src="https://cdn.ampproject.org/v0/amp-selector-0.1.js"></script>
+    <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.2.js"></script>
+    <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+    <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+    <script async custom-element="amp-lightbox-gallery" src="https://cdn.ampproject.org/v0/amp-lightbox-gallery-0.1.js"></script>
+    <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+    <script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
+    <script async custom-element="amp-instagram" src="https://cdn.ampproject.org/v0/amp-instagram-0.1.js"></script>
+    <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+
+    <!--AMP ANALYTICS-->
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <amp-analytics type="gtag" data-credentials="include">
+    <script type="application/json">
+    {
+    "vars" : {
+        "gtag_id": "<GA_MEASUREMENT_ID>",
+        "config" : {
+        "<UA-173702006-1>": { "groups": "default" }
+        }
+    }
+    }
+    </script>
+    </amp-analytics>
+    
+    <!-- Google imports -->
+    <link href="https://fonts.googleapis.com/css2?family=Piedra&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "NewsArticle",
+            "headline": "Open-source framework for publishing content",
+            "datePublished": "2015-10-07T12:02:41Z",
+            "image": [
+                "logo.jpg"
+            ]
+        }
+    </script>
+    <style amp-boilerplate>
+        body {
+            -webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+            -moz-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+            -ms-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+            animation: -amp-start 8s steps(1, end) 0s 1 normal both
+        }
+        
+        @-webkit-keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+            to {
+                visibility: visible
+            }
+        }
+        
+        @-moz-keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+            to {
+                visibility: visible
+            }
+        }
+        
+        @-ms-keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+            to {
+                visibility: visible
+            }
+        }
+        
+        @-o-keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+            to {
+                visibility: visible
+            }
+        }
+        
+        @keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+            to {
+                visibility: visible
+            }
+        }
+    </style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <style amp-custom>
+        /* any custom styles go here. */
+        
+        /*BASIC BODY*/
+
+        body {
+            background-image: url("{% static 'products/back1.jpg' %}");
+            background-repeat: round;
+            background-size: contain;
+            background-attachment: scroll;
+            background-color: rgb(255, 255, 255);
+            padding-top: 0px;
+        }
+
+        /* Navbar */
+
+
+        header.burger{
+            background-color: rgb(255, 115, 0);
+            height: 35px;
+            width: 100%;
+            top: 0;
+            text-align: center;
+            position: fixed;
+            z-index: 999;
+        }
+
+        div.burger{
+            height: inherit;
+            width: inherit;
+            position: fixed;
+            margin-top: 0px;
+            font-size: 30px;
+            display: flex;
+            align-items: center;
+            border-style: groove;
+            border-left: 0px;
+            border-color: orange;
+            border-width: 1px;
+        }
+        
+
+
+        h1.burger-icon{
+            margin-top: 20px;
+            font-size: 30px;
+            margin-left: 10px;
+            color: rgba(190, 190, 190, 0.363);
+            text-shadow: 0.6px 0.6px rgb(0, 0, 0);
+        }
+
+        h2.user{
+            font-size: 24px;
+            padding-bottom: 0px;
+            font-family: 'Abril Fatface', cursive;
+            color: rgba(190, 190, 190, 0.363);
+            text-shadow: 1px 1px rgb(0, 0, 0);
+        }
+
+        a.user{
+            padding-bottom: 0px;
+            margin-left: 33%;
+            padding-right: 0;
+            text-decoration: none;
+            font-family: 'Abril Fatface', cursive;
+            color: rgba(190, 190, 190, 0.363);
+            text-shadow: 1px 1px rgb(0, 0, 0);
+        }
+
+
+        amp-sidebar{
+            background-image: url("{% static 'products/back1.jpg' %}");
+            background-position-y: -100px;
+            background-position-x: -50px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            opacity: 90%;
+            text-decoration: none;
+        }
+
+        ul.sidebar{
+            margin-top: 20px;
+            padding-left: 0;
+            opacity: 100%;
+        }
+
+        li.sidebar{
+            width: 100%;
+            box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);      
+            margin-right: 35px;
+            margin-top: 2px;
+            border-style: groove;
+            text-align: center;
+            border-width: 0.2px;
+            list-style: none;
+            height: 50px;
+        }
+
+        li.sidebar:hover{
+            background-color: white;
+        }
+
+        a.sidebar{
+            width: inherit;
+            height: inherit;
+            text-decoration: none;
+            color: white;
+            font-size: 25px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        a.sidebar:active{
+            background-color: white;
+        }
+
+        p.sidebar{
+            font-size: 20px;
+            margin-top: 5px;
+            font-family: 'Abril Fatface', cursive;
+            color: rgba(190, 190, 190, 0.363);
+            text-shadow: 1px 1px rgba(255, 115, 0, 2);
+            background-color:rgba(255, 255, 255, 0.2);
+        }
+        button.sidebar{
+            width: inherit;
+            height: inherit;
+        }
+
+        p.sidebar:hover{
+            color: rgba(190, 190, 190, 0.363);
+            margin-top: 10px;
+            background-color: white;
+            
+        }
+        h1.sidebar{
+            text-align: center;
+            text-decoration:double;
+            text-decoration-style: double;
+        }
+
+        amp-sidebar.sidebar2{
+            width: 400px;
+        }
+
+        div.close_sidebar{
+            z-index: 20;
+        }
+
+        div.social{
+        }
+        /*Navbar Close*/
+
+        /*Whatsapp Button*/
+
+        .whats a {
+            background-image: url("{% static 'icons/whats-icon.png' %}") no-repeat top left;
+            bottom: 0px;
+            border: 150%;
+            padding: 0%;
+            padding-left: 0;
+            margin: 0px;
+            border-color: black;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            z-index: 10;
+            right: 0;
+            position: fixed;
+            opacity: 90%;
+            transition: padding 1s
+          }
+
+        .whats a:hover {
+            padding: 15px 32px;
+            opacity: 90%;
+          }
+
+        .whats a:active{
+            opacity: 100%;
+        }
+
+        .chat{
+            background-image: url("{% static 'icons/chat-icon.jpg' %}") no-repeat top left;
+            bottom: 100px;
+            padding: 0;
+            padding-left: 0;
+            margin: 0px;
+            text-align: center;
+            z-index: 1;
+            right: 0;
+            position: fixed;
+            opacity: 90%;
+            transition-property: padding, opacity;
+            transition-duration: 1s;
+        }
+
+        .chat a:hover {
+            padding: 15px 32px;
+            opacity: 90%;
+        }
+
+        .chat a:active {
+            opacity: 100%;
+        }
+
+        /*first gallery*/
+
+        div.first{
+            position: initial;
+        }
+
+        .home-gallery {
+            background-color: black;
+            opacity: 90%;
+            top: 30px;
+            box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .home-gallery:hover {
+            opacity: 100%;
+        }
+        
+        .cover {
+            object-fit: cover;
+            padding-bottom: 0px;
+        }
+
+        /*first gallery close*/
+
+
+        /*texts*/
+        div.home-text{
+            text-align: center;
+            margin-top: 35px;
+        }
+
+        .home-text {
+            top: 10px;
+            margin-top: 10px;
+            font-family: 'Abril Fatface', cursive;
+            color: rgba(190, 190, 190, 0.363);
+            background-color: rgba(255, 255, 255, 0.5);
+            text-shadow: 2px 2px rgb(255, 115, 0);
+            box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        h2.home-text{
+            font-size: 25px;
+        }
+
+        .home-title {
+            color: rgb(255, 115, 0);
+            cursor: crosshair;
+            text-decoration: 10px;
+        }
+
+        .product-text{
+            font-family: 'Abril Fatface', cursive;
+            color: rgba(190, 190, 190, 0.363);
+            text-shadow: 1px 1px rgb(255, 115, 0);
+            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+
+        }
+
+        .filter-text{
+            font-size: 20px;
+            font-family: 'Abril Fatface', cursive;
+            color: rgba(190, 190, 190, 0.363);
+            text-shadow: 2px 2px rgb(0, 0, 0);
+        }
+
+        .center{
+            text-align: center;
+        }
+        /*texts*/
+
+        /*mini gallery*/
+        div.column{
+            padding-top: 10px;
+            text-align: center;
+            margin-left: 0;
+            padding-bottom: 0px;
+        }
+
+        amp-carousel.mini-gallery{
+            padding-bottom: 0px;
+            box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        a.link{
+            text-decoration: none;
+        }
+
+         /*mini gallery END*/
+        
+         /*product page*/
+        .text-h1{
+            color:rgb(255, 115, 0);
+            text-align: center;
+            margin-top: 60px;
+            font-family: 'Abril Fatface', cursive;
+            color: rgba(190, 190, 190, 0.363);
+            text-shadow: 2px 2px rgb(255, 115, 0);
+            box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        div.filter {
+            background-color: rgba(255, 115, 0, 0.3);
+            top: 0;
+            width: 280px;
+            float: left;
+            margin-left: 0px;
+            align-items: center;
+            text-align: center;
+            border-style: groove;
+            border-color: silver;
+            position: fixed;
+        }
+
+        div.filter-item {
+            margin-top: 10px;
+        }
+
+
+        h1.filter{
+            font-size: 15px;
+            color: white;
+            background-color: black;
+        }
+
+        div.ranging{
+            padding: 0;
+        }
+
+        input.ranging{
+            width: 90%;
+        }
+
+        p.price{
+            padding: 0;
+            margin: 0;
+            font-size: 13px;
+            text-indent: 6px;
+            word-spacing: 16px;
+        }
+
+        p.age{
+            padding: 0;
+            margin: 0;
+            font-size: 15px;
+            text-indent: 5px;
+            word-spacing: 26px;
+        }
+        .all_products{
+            text-align: center;
+            display: inline;
+        }
+        div.img{
+            box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        div.product{
+            background-color: rgba(255, 255, 255, 0.3);
+            margin-top: 20px;
+            padding-left: 0;
+            margin-left: 4px;
+            left: 0;
+            display: inline-block;
+            width: 45%;
+            height: 20%;
+            box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+            border-color: white;
+            border-style: dashed;
+            border-width: 0.2px;
+            transition-property: width, height, border-color, box-shadow;
+            transition-duration: 1s, 1s, 1s, 1s;
+        }  
+
+
+        .infos{
+            color: rgba(190, 190, 190, 0.363);
+            text-shadow: 1px 1px rgb(255, 115, 0);
+            text-align: center;
+            text-decoration: none;
+        }
+
+        a.infos{
+            padding-bottom: 0px;
+        }
+
+        p.infos-nome{
+            font-family: 'Sriracha', cursive;
+            color: rgba(190, 190, 190, 0.363);
+            text-shadow: 2px 2px rgb(255, 115, 0);
+            box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+            line-height: 15px;
+            margin: 0px;
+        }
+
+        p.infos{
+            line-height: 15px;
+            text-align: left;
+            margin-left: 25%;
+            padding-bottom: 0px;
+            font-family: 'Sriracha', cursive;
+            font-size: 18px;
+            margin-bottom: 0px;
+        }
+        
+        input.size_radio{
+            width: 15px;
+            height: 15px;
+        }
+
+        input.size_radio:checked{
+            width: 13px;
+            height: 13px;
+        }
+
+        form.sizing{
+            float: left;
+            display: inline-flex;
+        }
+
+        input.size-but{
+            float: right;
+            background: url("{% static 'products/add_to_cart2.png' %}")no-repeat;
+            background-size: 50px;
+            color: inherit;
+            border: none;
+            height: 60px;
+            width: 60px;
+            font: inherit;
+            opacity: 80%;
+            cursor: pointer;
+            outline: inherit;
+            bottom: 0;
+            right: 0;
+        }
+
+        input.size-but:hover{
+            opacity: 100%;
+
+        }
+
+        /* END PRODUCT */
+
+                /* DETAIL PAGE*/
+        div.detail {
+            text-align: center;
+            margin-top: 50px;
+            width: 100%;
+            height: 20px;
+        }
+
+        div.carousel-preview {
+            display: flex;
+            margin-top: 180px;
+        }
+
+        div.buy {
+            margin-top: 100px;
+            padding-left: 110px;
+            float: left;
+            box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        button.preview {
+        }
+
+
+        .buy {
+            background-color: rgba(255, 115, 0, 0.5);
+            border-style: groove;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            width: 100%;
+            margin-top: 20px;
+            height: 50px;
+            color: black;
+            text-decoration: none;
+            cursor: grab;
+            font-size: 20px;
+            opacity: 95%;
+            border-radius: 15px;
+            box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+            transition-property: color, font-size, box-shadow, opacity;
+            transition-duration: 1s, 1s, 1.5s;
+        }
+
+        .buy:hover {
+            color: rgb(255, 115, 0);
+            opacity: 100%;
+            font-size: 23px;
+            box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        
+        .buy:active {
+            cursor: grabbing;
+            font-size: 20px;
+        }
+
+        div.detail-form{
+            display: flex;
+            box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .size_radio{
+            margin-top: 20px;
+        }
+        /* END DETAIL /*
+        
+        /* AUTOMATIC */
+        div.automatic{
+            font-size: 20px;
+            background-size: inherit;
+            width: 300px;
+            height: 150px;
+            margin-left: 8%;
+            padding-bottom: 0px;
+            margin-top: 150px;
+            background-image: url("{% static 'products/automatic.jpg' %}");
+            text-align: center;
+
+        }
+
+        form.automatic{
+            padding-top: 60px;
+        }
+        /*  END AUTOMATIC */
+
+        /* CART  */
+        div.cart{
+            margin-top: 70px;
+            box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        table.cart{
+            background-color: rgba(255, 115, 0, 0.5);
+            opacity: 100%;
+            border-style: double;
+            border-color: black;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+        th.first{
+            font-family: 'Sriracha', cursive;
+            border-style: none;
+            color: white;
+            background-color: black;
+            border-style: groove;
+            border-color: white;
+            border-width: 0.1px;
+        }
+
+        tr.first{
+            opacity: 100%;
+            background-color: black;
+        }
+        
+        td{
+            font-family: 'Sriracha', cursive;
+        }
+
+        tr{
+            background-color: rgba(255, 115, 0, 0.5);
+        }
+
+        tr:hover{
+            background-color: rgba(255, 115, 0, 1);
+            opacity: 100%;
+        }
+
+        th{
+            border-style:groove;
+        }
+
+        tr.total{
+            background-color: white;
+        }
+
+        div.cart-but{
+            margin-top: 60px;
+            display:flex;
+            float: left;
+            margin-left: 0px;
+        }
+
+        button.cart-but{
+            margin-left: 35px;
+        }
+
+        a.cart-but{
+            font-size: 15px;
+            color: black;
+            float: left;
+            margin-right: 0px;
+            padding-right: 0px;
+            text-decoration: none;
+        }
+
+        .pl15{
+            padding-left: 15px;
+        }
+
+        /* END CART */
+        /*CHECK OUT*/
+        div.checkout {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.9);
+
+        }
+
+        table.checkout {
+            border-collapse: collapse;
+            background-color: white;
+            border-color: black;
+        }
+
+        tr.checkout {
+            box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        tr.checkout:hover {
+            box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        th.checkout {
+        }
+
+        div.form {
+            background-color: rgba(255, 255, 255, 0.6);
+            width: 100%;
+            text-align: center;
+            box-shadow: 0px 10px 10px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        input.send {
+            background-color: orange;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        label.text {
+            top: 20px;
+        }
+                /* CONTACT */
+        div.box-form{
+            display: block;
+            margin-top: 20px;
+            width: 100%;
+            text-align: center;
+            background-color: rgba(255, 115, 0, 0.5);
+            border-style: groove;
+            border-color: silver;
+        }
+
+        h1.contato{
+            text-align: center;
+            width: 100%;
+            margin-top: 10%;
+            padding: 0px;
+        }
+
+        input.box-form{
+            margin-top: 0px;
+            padding:0;
+            margin: 0px;
+        }
+        /* CONTACT END */
+        /* FOOTER */
+        div.footer{
+            background-color: rgba(255, 115, 0, 0);
+            bottom: 0px;
+            margin-bottom: 0px;
+            height: 17px;
+            font-size: 15px;
+            width: 100%;
+            position: fixed;
+            text-align: center;
+            font-family: 'Metal Mania', cursive;
+        }
+
+        /* END FOOTER */
+        /* TEST */
+        .test{
+            padding-top: 0px;
+            margin-top: 0px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <!--SIDE BAR-->
+        <!--BURGER-->
+    <header class="burger">
+        <div class="burger" role="button" on="tap:sidebar1.open" tabindex="0">
+            <h1 class="burger-icon">☰</h1>
+            {% if not request.user.is_anonymous %}
+                <a class="user" href="{% url 'order_summary' %}"><h2 class="user"> olá, {{request.user}}</h2></a>
+                <a class='cart_icon' href="{% url 'order_summary' %}">
+                    <amp-img src="{% static 'products/add_to_cart2.png' %}"
+                    width="30px"
+                    height="30px"
+                    layout="fixed"
+                    alt="add_to_cart">
+                    </amp-img>
+                </a>
+            {% endif %}
+        </div>
+    </header>
+        <!--BURGER END-->
+    <amp-sidebar class="sidebar" id="sidebar1" layout="nodisplay" side="left">
+        <div role="button" aria-label="close sidebar" on="tap:sidebar1.close" tabindex="" class="close-sidebar filter-text">✕</div>
+        <ul class="sidebar">
+            <h1 class="sidebar home-text">JR</h1>
+            <li class="sidebar"><a class="sidebar" href="{% url 'home_product' %}"><button class="sidebar"><p class="sidebar"> Home </p></button></a></li>
+            <li class="sidebar"><button class="sidebar" on="tap:sidebar2.open"><p class="sidebar"> Produtos</p></button></li>
+            <li class="sidebar"><a class="sidebar" href="{% url 'contact' %}"><button class="sidebar"><p class="sidebar"> Contact </p></button></a></li>
+            {% if not request.user.is_anonymous %}
+                <li><h1 class="filter-text">{{request.user}}</h1></li>
+                <a class='cart_icon' href="{% url 'order_summary' %}">
+                    <amp-img src="{% static 'products/add_to_cart2.png' %}"
+                    width="40px"
+                    height="40px"
+                    layout="fixed"
+                    alt="add_to_cart">
+                    </amp-img>
+                </a>  
+            {% endif %}
+                <!--social-->
+                <div class="social">
+                    <a class="social" href="https://www.instagram.com/jr_modas_marica/" target="_blank">
+                        <amp-img class="social-amp-img" src="{% static 'icons/insta-icon.png' %}" width="30" height="30"
+                            layout="fixed" alt=""> </amp-img>
+                    </a>
+                    <a class="social" href="https://www.facebook.com/jrmoda" target="_blank">
+                        <amp-img class="social-amp-img" src="{% static 'icons/fb-icon2.png' %}" width="30" height="30"
+                            layout="fixed" alt=""></amp-img>
+                    </a>
+                    <a class="social" href="{% url 'contact' %}" target="_blank">
+                        <amp-img class="social-amp-img" src="{% static 'icons/email-icon6.png' %}" width="30"
+                            height="30" layout="fixed" alt=""> </amp-img>
+                    </a>
+                    <a class="social" href="{% url 'admin_product' %}" target="_blank">
+                            <amp-img class="social-amp-img" src="{% static 'icons/gear-icon.png' %}" width="30"
+                                height="30" layout="fixed" alt=""> </amp-img>
+                    </a>
+                </div>
+        </ul>
+    </amp-sidebar>
+
+    <amp-sidebar hidden class="sidebar2" id="sidebar2" layout="nodisplay" side="left">
+        <div role="button" aria-label="close sidebar" on="tap:sidebar2.close" tabindex="" class="close-sidebar">✕</div>
+        <ul class="sidebar">
+            <li class="sidebar"><a class="sidebar" href="{% url 'list_product' %}"><button class="sidebar"><p class="sidebar"> Todos </p></button></a></li>
+            <li class="sidebar"><a class="sidebar" href="{% url 'kids_list_product' %}"><button class="sidebar"><p class="sidebar"> Criança </p></button></a></li>
+            <li class="sidebar"><a class="sidebar" href="{% url 'adult_list_product' %}"><button class="sidebar"><p class="sidebar"> Adulto </p></button></a></li>
+        </ul>
+      </nav>
+    </amp-sidebar>
+    <!--SIDE BAR END-->
+    <!--BUTTO WHATS-->
+    <div class="whats">
+        <a href="https://wa.me/5521994534836" target="_blank">
+            <amp-img src="{% static 'icons/whats-icon.png' %}"
+            width="70"
+            height="70"
+            layout="intrinsic"
+            alt="whats">
+            </amp-img>
+    </a>
+    </div>
+
+    <div class="chat">
+        <a class="chat" href="{% url 'chat' %}" target="_blank">
+            <amp-img src="{% static 'icons/chat-icon.png' %}"
+            width="70"
+            height="70"
+            layout="intrinsic"
+            alt="whats">
+            </amp-img>
+    </a>
+    </div>
+    <!--BLOCK-->
+    {% block content %} {% endblock %}
+    <!--BLOCK END -->
+    <!-- Start Footer -->
+    <div class="footer">
+        <footer>
+            <a href="https://c2view.com.br/">
+                <small style="color: rgba(255, 115, 0, 1);">
+                    © C2View
+                </small>
+            </a>
+        </footer>
+    </div>
+    <!-- End Footer -->
+</body>
+
+</html>

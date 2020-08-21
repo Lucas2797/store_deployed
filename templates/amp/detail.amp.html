@@ -1,0 +1,58 @@
+{% extends "amp/base.amp.html" %} {% block tittle %}
+{{prod.nome}}{% endblock %}
+
+{% block content %}
+
+  <!--CAROUSEL-->
+    <div class="detail">
+        <amp-carousel lightbox controls autoplay delay="3000" 
+        id="detail-carousel"
+        width="190"
+        height="100"
+        layout="responsive"
+        type="slides">
+        {% for pic in prod.images.all %}
+            <amp-img src="{{pic.image.url}}"
+            width="190"
+            height="100"
+            layout="responsive"
+            alt=""></amp-img>
+        {% endfor %}
+        </amp-carousel>
+    </div>
+    <br>
+    <!--CAROUSEL PREVIEW-->
+    <div class="carousel-preview">
+        {% for p in prod.images.all %}
+            <button class="preview" on="tap:detail-carousel.goToSlide(index={{forloop.counter0}})">
+                <amp-img
+                    src="{{p.image.url}}"
+                    width="60"
+                    height="60"
+                    layout="fixed"
+                    alt="apples"
+                ></amp-img>
+            </button>
+            <br>
+        {% endfor %}
+    </div>
+    <!--TEXTS-->
+    <div>
+        <h2 class="home-text center">{{prod.nome}}</h3>
+        <h2 class="home-text center">R$: {{prod.preco}}</h3>
+        <div class="detail-form">
+            <h3 class="filter-text">Tamanho:</h3>
+                <form class="sizing" method="GET" action="{% url 'add_to_cart' prod.id %}" target="_top">
+                    {% csrf_token %}
+                    {% for e in prod.storage.all %}
+                        <input class="size_radio filter-text" type="radio" name="size" value="{{e.tamanho}}" required ><p class="tamanhos" id="field"><p class="filter-text"> {{ e.tamanho }}</p>
+                    {% endfor %}
+        </div>
+                    <input class="buy" type="submit" value="Adicionar ao Carrinho">
+                </form>
+        </div>
+        <br>
+        </button>
+    </div>
+    <button on="tap:AMP.goBack">Back</button>
+{% endblock %}

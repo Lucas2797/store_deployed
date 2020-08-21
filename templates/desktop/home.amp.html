@@ -1,0 +1,44 @@
+{% extends "desktop/base2.amp.html" %} {% block title %}Home {% endblock title %} {% block content %}
+
+<!-- first gallery-->
+    <div class="first top-0">
+            <amp-carousel class="home-gallery" lightbox controls autoplay delay="3000" width=340 height="100" layout="responsive" type="slides">
+                {% for B in filter1 %}
+                    <div class="slide">
+                        <amp-img class="cover" src="{{B.imagem.url}}"  width="400" height="100" layout="fill" alt=""></amp-img>
+                    </div>
+                {% endfor %}
+            </amp-carousel>
+    </div>
+<!-- first gallery END-->
+    
+    <!--TEXT AREA-->
+    <div class="home-text">
+        <h1 class="">Bem Vindo</h1>
+        <p class="">a JR MODAS</p>
+    </div>
+    <!--TEXT AREA end -->
+    <!--double gallery -->
+    <div class="line">
+        {% for b in filter2|slice:":2" %}
+        <div class="column">
+            <amp-carousel lightbox class="mini-gallery" width="650" height="400" type="slides">
+                {% for pic in b.banner_image.all %}
+                    <amp-img class="" src="{{ pic.imagem.url }}" width="600" height="800" layout="fill" alt=""></amp-img>
+                {% endfor %}
+            </amp-carousel>
+            <a class="column link" href="{{b.first_banner_image.link}}"><h2 class="home-text">{{ b.nome }}</h2></a>
+        </div>
+        {% endfor %}
+</div>
+    <!--double gallery END -->
+    <!--Google Maps-->
+    <amp-iframe width="1400" height="400"
+    sandbox="allow-scripts allow-same-origin"
+    layout="responsive"
+    frameborder="0"
+    src="https://maps.google.com/maps?width=1400&amp;height=600&amp;hl=en&amp;q=Av%20Carlos%20mariguela%20-%20RJ,%20737%20loja%202%20Marica+(JRModas)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+    </amp-iframe>
+<!--Footer (testar no base)-->
+
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "desktop/base2.amp.html" %} {% block tittle %}
+{{prod.nome}}{% endblock %}
+
+{% block content %}
+<!--CAROUSEL PREVIEW-->
+    <div class="carousel-preview">
+    {% for p in prod.images.all %}
+        <button class="preview" on="tap:detail-carousel.goToSlide(index={{forloop.counter0}})">
+            <amp-img
+                src="{{p.image.url}}"
+                width="100"
+                height="120"
+                alt="apples"
+            ></amp-img>
+        </button>
+        <br>
+    {% endfor %}
+    </div>
+  <!--CAROUSEL-->
+    <div class="detail">
+        <amp-carousel lightbox controls autoplay delay="3000" 
+        id="detail-carousel"
+        width="500"
+        height="500"
+        layout="fixed"
+        type="slides">
+        {% for pic in prod.images.all %}
+            <amp-img src="{{pic.image.url}}"
+            width="700"
+            height="700"
+            layout="fixed"
+            alt=""></amp-img>
+        {% endfor %}
+        </amp-carousel>
+    </div>
+    <!--TEXTS-->
+    <div class="buy">
+        <h2 class="home-text center">{{prod.nome}}</h2>
+        <h2 class="home-text center">R$: {{prod.preco}}</h2>
+        <div class="size-pick">
+            <h3 class="filter-text">Tamanhos:</h3>
+            <form class="sizing" method="GET" action="{% url 'add_to_cart' prod.id %}" target="_top">
+                {% csrf_token %}
+                {% for e in prod.storage.all %}
+                    <input class="size_radio filter-text" type="radio" name="size" value="{{e.tamanho}}" required ><p class="tamanhos" id="field">{{e.tamanho}}</p>
+                {% endfor %}
+                <br>
+                <input class="add" type="submit" value="Adicionar ao Carrinho!!">
+            </form>
+        </div>
+    </div>
+    <div class="related">
+        <h2 class="home-text">Relacionados:</h2>
+        <div class="related-prod">
+        {% for p in query|slice:":5" %}
+            <div class="prod">
+                <amp-img src="{{p.images.first.image.url}}"
+                width="120"
+                height="120"
+                layout="fixed"
+                alt="">
+                </amp-img>
+                <a href="{% url 'detail_product' p.id %}" class="link"><p class="related">{{p.nome}}</p></a>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
