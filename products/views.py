@@ -392,23 +392,27 @@ def delete_image(request, id):
     img.delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
 
 @login_required
-@allowed_users(allowed_ones=['Admin'])
 def test_view(request):
-    var = request.GET.get('var', '')
-    print(var)
-
+    var = get_client_ip()
     context = {
         'var': var,
     }
 
     if request.user_agent.is_mobile:
-        return render(request, 'amp/test.amp.html', context)
+        return render(request, 'admin_amp/Curriculo-mobile.html', context)
     elif request.user_agent.is_pc:
-        return render (request, 'desktop/test.amp.html', context)
+        return render (request, 'admin/Curriculo.html', context)
     else:
-        return render (request, 'test.html', context)
+        return render (request, 'admin/Curriculo.html', context)
 
 
 

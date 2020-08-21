@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curriculo Lucas Reimol</title>
+</head>
+<style>
+    
+    body{
+        background-color: rgb(112, 96, 255);
+        background-image: linear-gradient(to right, rgb(112, 96, 255), rgb(58, 37, 247));
+
+    }
+
+    div.page{
+        margin-top: 0px;
+        top: 0;
+        background-color: white;
+        max-width: 99%;
+        padding-left: 0px;
+        margin-left: 0;
+        box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    /*  HEADER  */
+
+
+
+    div.header{
+        margin-top: 20px;
+        background-image: linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(168, 95, 0, 0.8));
+        border-style: groove;
+        border-color: blueviolet;
+        margin-left: 0px;
+        padding-left: 0px;
+        height: inherit;
+        float: left;
+        position: fixed;
+    }
+
+    ul.header{
+        margin-left: 0px;
+        padding-left: 0px;
+        margin-bottom: 20px ;
+        height: inherit;
+    }
+
+    li.header{
+        margin-left: 0px;
+        padding-left: 0px;
+        list-style: none;
+    }
+
+    a.header{
+        text-decoration: none;
+    }
+
+    h1.header{
+        color: white;
+        text-shadow: 1px 1px rgb(0, 0, 0);
+    }
+    /* HEADER END */
+
+
+    /* Profile */
+    div.first{
+        margin-top: 50px;
+    }
+
+    div.img{
+        margin-top: 150px;
+        height: 120px;
+        width: 120px;
+        border-style: groove;
+        border-color: rgb(112, 96, 255);
+    }
+
+    div.nome{
+        margin-left: 0px;
+    }
+
+    /* Profile END */
+
+    /* TEXTS */
+    .titling{
+        color: rgba(190, 190, 190, 0.363);
+        text-shadow: 2px 2px rgb(0, 0, 0);
+    }
+
+
+
+    /* COMPETENCIAS E EXPERIENCIAS */
+    div.second{
+    }
+
+    div.exp{
+        text-align: center;
+        height: 80px;
+        transition-property: height, display;
+        transition-duration: 1s;
+        z-index: 2;
+        box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    div.exp:hover{
+        height: 900px;
+        position: relative;
+    }
+
+    .disp-inline{
+
+        margin-right: 70px;
+    }
+
+    div.exp2{
+        z-index: -1;
+        opacity: 0%;
+        transition-property: opacity;
+        transition-duration: 1s;
+    }
+
+    div.exp:hover > div.exp2{
+        opacity: 100%;
+        position: relative;
+    }
+
+    /* PROJETOS */
+    div.exp-long{
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        height: 50px;
+        transition-property: height, display;
+        transition-duration: 1s;
+        box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    div.exp-long:hover{
+        height: 1300px;
+        position: relative;
+    }
+
+
+    div.exp-long2{
+        opacity: 0%;
+        transition-property: opacity;
+        transition-duration: 1s;
+    }
+
+    div.exp-long:hover > div.exp-long2{
+        opacity: 100%;
+        position: relative;
+    }
+
+
+    /* PROJETOS END */
+
+    /* CERTIFICADOS */
+    div.cert{
+        box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+        width: 99%;
+
+    }
+
+    /* CERTIFICADOS END */
+    ul.list{
+        text-align: left;
+
+    }
+
+
+    img.check1{
+        border-color: red;
+        border-style: dashed;
+    }
+
+
+    img.check2{
+        border-style: dashed;
+        border-color: blue;
+    }
+
+    img.check3{
+        border-color: green;
+        border-style: dashed;
+    }
+
+    div.whats{
+    }
+
+</style>
+<body>
+    <!-- <div class="header">
+            <ul class="header">
+                <li class="header">
+                    <a class="header" href="">
+                        <h1 class="header">Inicio</h1>
+                    </a>
+                </li>
+                <li class="header">
+                    <a class="header" href="">
+                        <h1 class="header">Competências</h1>
+                    </a>
+                </li>
+                <li class="header">
+                    <a class="header" href="">
+                        <h1 class="header">Experiências</h1>
+                    </a>
+                </li>
+                <li class="header">
+                    <a class="header" href="">
+                        <h1 class="header">Contato</h1>
+                    </a>
+                </li>
+            </ul>
+        </div> -->
+    <div class="page">
+        <div class="first">
+            <div class="img">
+                <img src="https://media-exp1.licdn.com/dms/image/C4E03AQF7YTCNmJLtKw/profile-displayphoto-shrink_200_200/0?e=1603324800&v=beta&t=Bv_bT4xpxjlhX7mYGorvNXjPaQAyWiLjxK0NUcjj--c" width="120px" height="120px" alt="">
+            </div>
+            <div class="nome">
+                <h1 class="tes titling">Lucas Reimol Faria</h1>
+                <p>GitHub: <a href="https://github.com/lucasrf27">https://github.com/lucasrf27</a></p>
+                <p>StackOverflow: <a href="https://stackoverflow.com/users/10493488/lucasrf27?tab=profile">https://stackoverflow.com/users/10493488/lucasrf27?tab=profile</a></p>
+                <p>LinkedIn: <a href="https://www.linkedin.com/in/lucas-reimol-2439961a2/">https://www.linkedin.com/in/lucas-reimol-2439961a2/</a> </p>
+                <i>"Quero jogar com os melhores."</i>
+            </div>
+        </div>
+        <div class="second">
+            <div class="exp">
+                <h1 class="titling">Competências</h1>
+                <div class="leg">
+                    <span><img class="check1"> Iniciante</span>
+                    <span><img class="check2"> Intermediário</span>
+                    <span><img class="check3"> Avançado</span>
+                </div>
+                <div class="exp2 titling disp-inline">
+                    <ul>
+                        <h2>Front-end</h2>
+                        <li>amp-html <img class="check3"></li>
+                        <li>JavaScript <img class="check1"></li>
+                        <li>Html <img class="check3"></li>
+                        <li>CSS <img class="check3"></li>
+                        <li>Analytics <img class="check2"></li>
+                        <li>GoogleAds <img class="check1"></li>
+                        <li>GIMP <img class="check2"></li>
+                    </ul>
+                    <ul>
+                        <h2>Back-end</h2>
+                        <li>Python <img class="check3"></li>
+                        <li>Django <img class="check3"></li>
+                        <li>django-rest-framework <img class="check2"></li>
+                        <li>django-security <img class="check1"></li>
+                        <li>Pytest <img class="check2"></li>
+                        <li>Heroku <img class="check3"></li>
+                        <li>GCloud <img class="check1"></li>
+                        <li>SQLite <img class="check2"></li>
+                        <li>PostgreSQL <img class="check1"></li>
+                        <li>VirtualBox <img class="check2"></li>
+                        <li>Git <img class="check2"></li>
+                        <li>StackOverflow <img class="check3"></li>
+                    </ul>
+                    <ul>
+                        <h2>Idiomas</h2>
+                        <li>Ingles <img class="check3"></li>
+                        <li>Espanhol <img class="check2"></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="exp">
+                <h1 class="titling">Experiências</h1>
+                <div class="exp2">
+                    <h2 class="titling">C2View</h2>
+                    <a href="https://www.c2view.com.br">C2view.com.br</a>
+                    <p>Atualmente de onde tiro minha renda. C2View é um MEI criado por mim e meu irmão <br>
+                        buscando serviços para atender tanto a necessidade de um perfil online quanto <br>
+                        a de gerênciamento portatil.
+                    </p>
+                    <li>Desenvolver sistema de gerenciamento e venda de produtos com base no django</li>
+                    <li>Desenvolver e rastrear(amp-analytics) toda a plataforma online do cliente</li>
+                    <p>Nota: Demais empresas fora do ramo de desenvolvimento de software em <a href="https://github.com/lucasrf27/Curriculo-Dev/tree/master/Curriculo-antigo"></a>https://github.com/lucasrf27/Curriculo-Dev/tree/master/Curriculo-antigo</p>
+                </div>
+            </div>
+            <br>
+            <div class="exp">
+                <h1 class="titling">Projetos</h1>
+                <div class="exp2">
+                    <h2 class="titling">store_deployed</h2>
+                    <p>E-commerce para empresa de roupas</p>
+                    <a href="https://jrmoda.herokuapp.com/products/home">https://jrmoda.herokuapp.com/products/home</a><br>
+                    <a href="https://github.com/lucasrf27/store_deployed">https://github.com/lucasrf27/store_deployed</a>
+                    <div class="disp-inline">
+                        <div>
+                            <h4 class="titling">Front-end</h4>
+                            <ul class="list">
+                                <li> Front-end em amp-html, JavaScript e widgets</li>
+                                <li> Versão mobile responsiva</li>
+                                <li> Rastreio específico de tag por amp-analytics</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="titling"> Back-end</h4>
+                            <ul class="list">
+                                <li> Python, Django, PostgreSQL</li>
+                                <li> Gerenciamento de Estoque, Vendas e Pedidos</li>
+                                <li> Versão de operação para funcionarios</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <h2 class="titling">PetLove</h2>
+                    <p>Desafio</p>
+                    <a href="https://github.com/petlove/vagas/blob/master/backend-ruby/README.md">https://github.com/petlove/vagas/blob/master/backend-ruby/README.md</a><br>
+                    <a href="https://github.com/lucasrf27/Petlove">https://github.com/lucasrf27/Petlove</a>
+                    <h2 class="titling">guiadeutilidades</h2>
+                    <p>Site de comerciantes para revista local</p>
+                    <a href="https://github.com/lucasrf27/guiadeutilidades">https://github.com/lucasrf27/guiadeutilidades</a>
+                </div>
+            </div>
+            <div class="exp-long">
+                <h1 class="titling">Certificados</h1>
+                <div class="exp-long2">
+                    <div class="cert">
+                        <img src="https://raw.githubusercontent.com/lucasrf27/Curriculo-Dev/master/Curriculo-Dev/static/python-beyond-the-basics-1.jpg" width="200" height="200" alt="">
+                        <h3 class="titling">Python Beyond the Basics</h3>
+                        <p> Python beyond the basics vai profundo na nas utilizações de method e class, type de cada objeto, uso de iter, definição de __methods__ ex: __init__, tratamento de self, super. Brevemente sobre dashboards e bastante foco em decorators,  e inheritance.</p>
+                    </div>
+                    <div class="cert">
+                        <img src="https://raw.githubusercontent.com/lucasrf27/Curriculo-Dev/master/Curriculo-Dev/static/python-managing-packages-1.jpg" width="200" height="200" alt="">
+                        <h3 class="titling">Managing Python Packages and Virtual Environments.</h3>
+                        <p>Curso de treinamento básico na parte de git, mas com mais foco em tratamento de VirtualEnvs</p>
+                    </div>
+                    <div class="cert">
+                        <img src="https://raw.githubusercontent.com/lucasrf27/Curriculo-Dev/master/Curriculo-Dev/static/python-best-pratices-code-quality-1.jpg" width="200" height="200" alt="">
+                        <h3 class="titling">Python best pratices code quality.</h3>
+                        <p>Curso demostra melhores maneiras de ativar a doc daquele method ou classe, .help(), .__doc__, etc. e ferramentas para criar um bom ReadMe</p>
+                    </div>
+                    <div class="cert">
+                        <h3 class="titling">Unit Testing with Python</h3>
+                        <p>Curso focado no teste unitário, abrangendo a parte de unittest e Pytest.</p>
+                        <p>Nota: Sem Certificado, pois minha licença estava para acabar e o final do curso era a respeito do Pytest, o qual ja havia aprendido, uso e prefiro.</p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="exp">
+                <h1 class="titling">Contato</h1>
+                <div class="exp2">
+                    <p class="titling">(21) 9915-01586</p>
+                    <div class="whats">
+                        <p class="titling">(21) 9681-51502</p>
+                        <a href="https://wa.me/5521968151502" target="_blank">
+                            <img src="static/whats-icon.png" width="" height="50px" alt="">
+                        </a>
+                    </div>
+                    <p class="titling">lucas.reimol@gmail.com</p>
+                </div>
+            </div>
+        </div>
+
+</body>
+
+</html>
