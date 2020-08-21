@@ -1,0 +1,51 @@
+{% extends "desktop/base2.amp.html" %}
+{% block title %}
+Contact
+{% endblock %}
+
+{% block content %}
+    <h1 class="contato home-text">Contato:</h2>
+    <div class="page">
+        <div class="contact">
+            <h2 class="filter-text">Telefones:</h2>
+            <h3 class="contact-text">JR Kids</h3>
+            <p class="contact-text">+55 21 99453-4836</p>
+        </div>
+        <div class="box-form">
+            <form method="POST" action-xhr="{% url 'contact' %}">
+                {% csrf_token %}
+                <label for="nome">              
+                    <h3 class="filter-text">Nome:</h3>
+                    <input class="box-form" name="nome" type="text">
+                </label>
+                <label for="phone">
+                    <h3 class="filter-text">Telefone:</h3>
+                    <input class="box-form" name="phone" type="tel" value="+5521" maxlength="14" placeholder="(xx)xxxx-xxxxx">
+                </label>
+                <label for="email">
+                    <h3 class="filter-text">Email:</h3>
+                    <input class="box-form" name="email" type="email" placeholder="xxxxx@email.com">
+                </label>
+                <label for="email">
+                    <h3 class="filter-text">Mensagem:</h3>
+                    <textarea class="box-form" name="mensagem" rows="5" cols="50" placeholder="Em que podemos ser úteis"></textarea>
+                </label>
+                <input type="submit">
+            </form>
+        </div>
+        <div class="endereco">
+            <h2 class="filter-text">Lojas:</h2>
+            <h3 class="contact-text">JR Kids</h3>
+            <p class="contact-text">Av. Carlos Marighella, nº 737 Loja 2, Itaipuaçu</p>
+            <p class="contact-text">Maricá, RJ</p>
+        </div>
+    </div>
+    <span>-</span>
+    <amp-iframe width="1400" height="400"
+    sandbox="allow-scripts allow-same-origin"
+    layout="responsive"
+    frameborder="0"
+    src="https://maps.google.com/maps?width=1400&amp;height=600&amp;hl=en&amp;q=Av%20Carlos%20mariguela%20-%20RJ,%20737%20loja%202%20Marica+(JRModas)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+    </amp-iframe>
+
+{% endblock %}

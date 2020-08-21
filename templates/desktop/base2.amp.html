@@ -1,0 +1,892 @@
+{% load static %} {% get_media_prefix as MEDIA_PREFIX %}
+<!doctype html>
+<html amp lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <title>{% block title %}JR Modas{% endblock %}</title>
+    <!-- AMP Canonical -->
+    <link rel="canonical" href="{% url 'home_product' %}">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <!-- AMP imports -->
+    <script async custom-element="amp-selector" src="https://cdn.ampproject.org/v0/amp-selector-0.1.js"></script>
+    <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.2.js"></script>
+    <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+    <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+    <script async custom-element="amp-lightbox-gallery"
+        src="https://cdn.ampproject.org/v0/amp-lightbox-gallery-0.1.js"></script>
+    <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+    <script async custom-element="amp-social-share"
+        src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
+    <script async custom-element="amp-instagram" src="https://cdn.ampproject.org/v0/amp-instagram-0.1.js"></script>
+    <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+    <!--AMP ANALYTICS-->
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <!-- Google imports -->
+    <link href="https://fonts.googleapis.com/css2?family=Piedra&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "NewsArticle",
+            "headline": "Open-source framework for publishing content",
+            "datePublished": "2015-10-07T12:02:41Z",
+            "image": [
+                "logo.jpg"
+            ]
+        }
+    </script>
+    <style amp-boilerplate>
+        body {
+            -webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+            -moz-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+            -ms-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+            animation: -amp-start 8s steps(1, end) 0s 1 normal both
+        }
+
+        @-webkit-keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+
+            to {
+                visibility: visible
+            }
+        }
+
+        @-moz-keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+
+            to {
+                visibility: visible
+            }
+        }
+
+        @-ms-keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+
+            to {
+                visibility: visible
+            }
+        }
+
+        @-o-keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+
+            to {
+                visibility: visible
+            }
+        }
+
+        @keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+
+            to {
+                visibility: visible
+            }
+        }
+    </style><noscript>
+        <style amp-boilerplate>
+            body {
+                -webkit-animation: none;
+                -moz-animation: none;
+                -ms-animation: none;
+                animation: none
+            }
+        </style>
+    </noscript>
+    <style amp-custom>
+        /* any custom styles go here. */
+
+        /*BASIC BODY*/
+
+        body {
+            background-image: url("{% static 'products/back1.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: scroll;
+            background-color: rgb(255, 255, 255);
+            padding-top: 44px;
+            padding-bottom: 20px;
+        }
+
+        /* Navbar */
+        div.topnav {
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1;
+            float: left;
+            height: inherit;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(168, 95, 0, 1));
+        }
+
+        nav.menu {
+        }
+
+        div.links{
+            display: inline-flex;
+            margin-left: 20px;
+        }
+
+        a.jr {
+            text-decoration: none;
+            color: rgba(190, 190, 190, 0.363);
+            text-shadow: 2px 2px rgb(255, 115, 0);
+            font-size: 25px;
+            font-family: 'Abril Fatface', cursive;
+            background-color: rgba(0, 0, 0, 0);
+            border-style: dashed;
+            border-radius: 50%;
+            padding: 5px;
+            transition-property: padding-left, padding-right, color, background-color, border-radius;
+            transition-duration: 2s, 2s, 2s, 2s, 2s;
+        }
+
+
+        a.jr:hover {
+            border-radius: 0%;
+            color: white;
+            background-color: black;
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+
+        a.menu {
+            margin-top: 12px;
+            margin-left: 5px;
+            text-decoration: none;
+            font-family: 'Piedra', cursive;
+            font-size: 20px;
+            border: none;
+            color: rgba(190, 190, 190, 0.363);
+            text-shadow: 2px 2px rgb(255, 115, 0);
+            padding-left: 20px;
+            padding-right: 20px;
+            transition-property: color, padding-left, padding-right, font-size;
+            transition-duration: 1s;
+        }
+
+        a.menu:hover {
+            padding-left: 40px;
+            padding-right: 40px;
+            font-size: 25px;
+            color: black;
+        }
+        div.social {
+            float: right;
+            margin-top: 10px;
+        }
+
+        div.social:hover {
+        }
+
+        a.social {
+            margin-left: 30px;
+            background-image: url("{% static 'icons/brilho2.png' %}");
+            background-repeat: no-repeat;
+            border-radius: 50%;
+            background-size: 30%;
+            padding-top: 20px;
+            padding-bottom: 0px;
+            background-position: -10px;
+            transition-property: padding-left, padding right, background-size;
+            transition-duration: 1s, 1s, 1s;
+        }
+
+
+        a.social:hover {
+            background-size: 120%;
+            padding-right: 15px;
+            padding-left: 5px;
+        }
+
+        /*Navbar Close*/
+
+        /*Whatsapp Button*/
+
+        .whats a {
+            background-image: url("{% static 'icons/whats-icon.png' %}") no-repeat top left;
+            bottom: 50px;
+            border: 150%;
+            padding: 0%;
+            padding-left: 0;
+            margin: 0px;
+            border-color: black;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            z-index: 1;
+            right: 0;
+            position: fixed;
+            opacity: 70%;
+            transition: padding 1s
+        }
+
+        .whats a:hover {
+            padding: 15px 32px;
+            opacity: 90%;
+        }
+
+        .whats a:active {
+            opacity: 100%;
+        }
+
+        .chat{
+            background-image: url("{% static 'icons/chat-icon.jpg' %}") no-repeat top left;
+            bottom: 180px;
+            padding: 0;
+            padding-left: 0;
+            margin: 0px;
+            text-align: center;
+            z-index: 1;
+            right: 0;
+            position: fixed;
+            opacity: 70%;
+            transition-property: padding, opacity;
+            transition-duration: 1s;
+        }
+
+        .chat a:hover {
+            padding: 15px 32px;
+            opacity: 90%;
+        }
+
+        .chat a:active {
+            opacity: 100%;
+        }
+
+        /* HOME PAGE*/
+        /*first gallery*/
+        div.first {
+            position: initial;
+        }
+
+        .home-gallery {
+            background-color: black;
+            opacity: 90%;
+            z-index: 0;
+            margin-top: 0em;
+            padding-top: 0px;
+            padding-bottom: 0px;
+        }
+
+        .home-gallery:hover {
+            opacity: 100%;
+        }
+
+        .cover {
+            object-fit: cover;
+            padding-bottom: 0px;
+        }
+
+        /*first gallery close*/
+
+
+        /* text*/
+        div.home-text {
+            text-align: center;
+        }
+
+        .home-text {
+            font-family: 'Abril Fatface', cursive;
+            color: rgba(190, 190, 190, 0.363);
+            text-shadow: 2px 2px rgb(255, 115, 0);
+        }
+
+        .home-title {
+            color: rgb(255, 115, 0);
+            cursor: crosshair;
+            text-decoration: 10px;
+        }
+
+        .filter-text{
+            font-size: 20px;
+            font-family: 'Abril Fatface', cursive;
+            color: rgba(190, 190, 190, 0.363);
+            text-shadow: 2px 2px rgb(0, 0, 0);
+        }
+
+        .contact-text{
+            padding: 0;
+            margin: 0;
+            color: rgb(255, 115, 0)
+        }
+        
+        .center{
+            text-align: center;
+        }
+
+    /* text end*/
+
+        /*mini gallery*/
+        .line::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        div.column {
+            float: left;
+            width: 50%;
+            text-align: center;
+        }
+
+        a.link {
+            text-decoration: none;
+        }
+
+        /*mini gallery END*/
+
+        /*product page*/
+        .text-h1 {
+            text-align: center;
+            box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        div.page {
+            height: 100%;
+        }
+
+        
+        div.filter {
+            background-color: rgba(255, 115, 0, 0.3);
+            width: 230px;
+            height: 100%;
+            float: left;
+            margin-left: 20px;
+            align-items: center;
+            text-align: center;
+            border-style: groove;
+            border-color: silver;
+            position: fixed;
+        }
+
+        div.filter-item {
+            margin-top: 10px;
+        }
+        
+        div.ranging{
+            padding: 0;
+        }
+
+        input.ranging{
+            width: 90%;
+        }
+
+        div.calsa_size{
+        }
+
+        p.price{
+            padding: 0;
+            margin: 0;
+            font-size: 13px;
+            text-indent: 3px;
+            word-spacing: 9px;
+        }
+
+        p.age{
+            padding: 0;
+            margin: 0;
+            font-size: 15px;
+            text-indent: 5px;
+            word-spacing: 20px;
+        }
+        .all_products {
+            align-items: center;
+            margin-left: 300px;
+        }
+
+        .product {
+            display: inline-block;
+            width: 200px;
+            height: 380px;
+            box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+            margin-left: 35px;
+            border-color: white;
+            border-style: dashed;
+            border-width: 0.2px;
+            transition-property: width, height, border-color, box-shadow;
+            transition-duration: 1s, 1s, 1s, 1s;
+        }
+
+        .product:hover {
+            box-shadow: 15px 15px 15px 15px rgba(0, 0, 0, 0.2);
+            border-color: rgb(168, 95, 0);
+            width: 250px;
+            height: 450px;
+        }
+
+        .img {
+            width: 100%;
+        }
+
+        div.infos {
+
+            color: rgb(255, 115, 0);
+            text-align: center;
+            float: left;
+        }
+
+        p.infos {
+            margin-top: 0px;
+            text-align: left;
+            font-size: 20px;
+            font-family: 'Abril Fatface', cursive;
+            color: rgba(190, 190, 190, 0.363);
+            text-shadow: 2px 2px rgb(255, 115, 0);
+        }
+
+        a.infos {
+            text-decoration: none;
+            font-size: 20px;
+            color: rgba(190, 190, 190, 0.363);
+            text-shadow: 2px 2px rgb(255, 115, 0);
+            padding-bottom: 0px;
+            font-family: 'Sriracha', cursive;
+        }
+
+        p.tamanhos{
+            margin-top: 0px;
+            display: inline-flex;
+            margin-bottom: 10px;
+            font-size: 20px;
+            color: rgba(190, 190, 190, 0.363);
+            text-shadow: 2px 2px rgb(255, 115, 0);
+            font-family: 'Sriracha', cursive;
+        }
+
+        input.size_radio{
+            width: 15px;
+            height: 15px;
+        }
+
+        input.size_radio:checked{
+            width: 13px;
+            height: 13px;
+        }
+
+        form.sizing{
+            float: left;
+        }
+        input.size-but{
+            float: right;
+            background: url("{% static 'products/add_to_cart2.png' %}")no-repeat;
+            background-size: 50px;
+            color: inherit;
+            border: none;
+            height: 60px;
+            width: 60px;
+            font: inherit;
+            opacity: 80%;
+            cursor: pointer;
+            outline: inherit;
+            bottom: 0;
+            right: 0;
+        }
+
+        input.size-but:hover{
+            opacity: 100%;
+
+        }
+
+        input.filter-but{
+            background-color: rgba(168, 95, 0, 0.6);
+            border: groove;
+            color: white;
+            padding: 16px 32px;
+            text-decoration: none;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        input.filter-but:hover{
+            padding: 18px 35px;
+        }
+
+
+        /* END PRODUCT */
+        /* DETAIL PAGE*/
+        div.detail {
+            padding-left: 30px;
+            text-align: center;
+            float: left;
+            margin-top: 100px;
+        }
+
+        div.carousel-preview {
+            float: left;
+            margin-top: 110px;
+            padding-left: 110px;
+        }
+
+        div.buy {
+            margin-top: 100px;
+            width: 42%;
+            float: left;
+            box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        button.preview {
+            margin-bottom: 10px;
+        }
+
+        div.related{
+            padding-top: 0px;
+            display: inline-block;
+            width: 500px;
+            background-color: rgba(250, 250, 250, 0.3);
+        }
+
+        div.related-prod{
+            display: flex;
+            width: 50px;
+        }
+
+        p.related{
+        text-align: center;
+        color: rgba(190, 190, 190, 0.363);
+        text-shadow: 2px 2px rgb(255, 115, 0);
+        font-family: 'Sriracha', cursive;
+        line-height: 14px;
+        }
+
+        input.add{
+            background-color: rgba(255, 115, 0, 0.5);
+            border-style: groove;
+            height: 50px;
+            width: 500px;
+            color: black;
+            cursor: grab;
+            font-size: 20px;
+            opacity: 95%;
+            border-radius: 15px;
+            box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+            transition-property: color, font-size, box-shadow, opacity;
+            transition-duration: 1s, 1s, 1.5s;
+        }
+
+        input.add:hover {
+            color: rgb(255, 115, 0);
+            opacity: 100%;
+            font-size: 23px;
+            box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+        }
+        a.buy {
+            background-color: rgba(255, 115, 0, 0.5);
+            border-style: groove;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-right: 100px;
+            padding-left: 100px;
+            margin-top: 20px;
+            height: 50px;
+            color: black;
+            text-decoration: none;
+            cursor: grab;
+            font-size: 20px;
+            opacity: 95%;
+            border-radius: 15px;
+            box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+            transition-property: color, font-size, box-shadow, opacity;
+            transition-duration: 1s, 1s, 1.5s;
+        }
+
+        a.buy:hover {
+            color: rgb(255, 115, 0);
+            opacity: 100%;
+            font-size: 23px;
+            box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        
+        a.buy:active {
+            cursor: grabbing;
+            font-size: 20px;
+        }
+
+        /* END DETAIL /*
+        /* AUTOMATIC */
+        div.automatic {
+            font-size: 20px;
+            background-size: inherit;
+            width: 500px;
+            height: 250px;
+            margin-left: 30%;
+            margin-top: 150px;
+            background-image: url("{% static 'products/automatic.jpg' %}");
+            text-align: center;
+
+        }
+
+        form.automatic {
+            padding-top: 110px;
+        }
+
+        /*  END AUTOMATIC */
+        /* CART  */
+        .tabling {
+            align-items: center;
+            margin-left: 270px;
+            margin-top: 120px;
+            width: auto;
+        }
+
+        table.cart {
+            background-color: rgba(255, 115, 0, 0.5);
+            opacity: 90%;
+            border-style: double;
+            border-color: black;
+            border-collapse: collapse;
+        }
+
+        th.first {
+            font-family: 'Sriracha', cursive;
+            border-style: none;
+            color: white;
+            padding-right: 20px;
+            background-color: black;
+        }
+
+        tr.first {
+            opacity: 100%;
+            background-color: black;
+        }
+
+        td.cart {
+            font-family: 'Sriracha', cursive;
+        }
+
+        tr.cart {
+            background-color: rgba(255, 115, 0, 0.5);
+        }
+
+        tr.cart:hover {
+            background-color: rgba(255, 115, 0, 1);
+            opacity: 100%;
+        }
+
+        th.cart {
+            border-style: groove;
+        }
+
+        tr.total {
+            background-color: white;
+        }
+
+        div.cart-but {
+            margin-top: 50px;
+        }
+
+        a.cart-but {
+            margin-right: 265px;
+        }
+
+        .pl15 {
+            padding-left: 15px;
+        }
+
+        /* END CART */
+        /*CHECK OUT*/
+        div.checkout {
+            margin-left: 8%;
+            margin-top: 10%;
+            float: left;
+            background-color: rgba(255, 255, 255, 0.9);
+
+        }
+
+        table.checkout {
+            border-collapse: collapse;
+            background-color: white;
+            border-color: black;
+        }
+
+        tr.checkout {
+            box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        tr.checkout:hover {
+            box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        th.checkout {}
+
+        div.form {
+            width: 500px;
+            float: right;
+            margin-right: 25px;
+            margin-left: 10px;
+            text-align: center;
+            box-shadow: 0px 10px 10px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        input.send {
+            background-color: orange;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        label.text {
+            margin-top: 30px;
+            top: 20px;
+        }
+        /* CONTACT */
+        div.box-form{
+            float: left;
+            display: block;
+            margin-left: 55px;
+            width: 400px;
+            text-align: center;
+            background-color: rgba(255, 115, 0, 0.5);
+            border-style: groove;
+            border-color: silver;
+            box-shadow: 0px 10px 10px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        div.page{
+            float: left;
+            width: 100%;
+        }
+
+        div.contact{
+            margin-top: 205px;
+            margin-left: 260px;
+            width: 150px;
+            float: left;
+        }
+        
+        div.endereco{
+            margin-right: 90px;
+            margin-top: 200px;
+            float: right;
+            width: 300px;
+            height: 100px;
+        }
+
+        h1.contato{
+            margin-left: 45%;
+            padding: 0px;
+        }
+
+        h2.contact-text{
+            margin-bottom: 10px;
+        }
+
+        input.box-form{
+            margin-top: 0px;
+            padding:0;
+            margin: 0px;
+        }
+        /* CONTACT END */
+        /* FOOTER */
+        div.footer {
+            margin-top: 500px;
+            background-color: rgba(255, 115, 0, 0);
+            padding-top: 0px;
+            bottom: 0px;
+            margin-bottom: 0px;
+            height: 17px;
+            font-size: 15px;
+            width: 100%;
+            position: fixed;
+            text-align: center;
+            font-family: 'Metal Mania', cursive;
+        }
+
+        /* END FOOTER */
+        /* TEST */
+    </style>
+</head>
+
+<body>
+    <amp-analytics type="gtag" data-credentials="include">
+        <script type="application/json">
+        {
+            "vars" : {
+                "gtag_id": "<UA-173702006-1>",
+                "config" : {
+                "<UA-173702006-1>": { "groups": "default" }
+                }
+            }
+        }
+        </script>
+    </amp-analytics>
+    <!--TOP NAV-->
+    <div class="topnav">
+        <nav class="menu">
+            <div class="links">
+                <a class='jr' href="{% url 'home_product' %}">JR</a>
+                <a class="menu" role="button" href="{% url 'adult_list_product'%}">ADULTO</a> 
+                <a class="menu" role="button" href="{% url 'kids_list_product'%}">INFANTIL</a>
+                <a class="menu" href="{% url 'contact' %}">CONTATO</a>
+                {% if not request.user.is_anonymous %}
+                <a class="menu" href="{% url 'order_summary' %}">olá {{request.user}}</a>
+                {% endif %}
+            </div>
+                <!--social-->
+            <div class="social">
+                <a class="social" href="https://www.instagram.com/jr_modas_marica/" target="_blank">
+                    <amp-img class="social-amp-img" src="{% static 'home/insta-icon.png' %}" width="30" height="30"
+                        layout="fixed" alt=""> </amp-img>
+                </a>
+                <a class="social" href="https://www.facebook.com/jrmoda" target="_blank">
+                    <amp-img class="social-amp-img" src="{% static 'icons/fb-icon2.png' %}" width="30" height="30"
+                        layout="fixed" alt=""></amp-img>
+                </a>
+                <a class="social" href="{% url 'contact' %}" target="_blank">
+                    <amp-img class="social-amp-img" src="{% static 'icons/email-icon6.png' %}" width="30"
+                        height="30" layout="fixed" alt=""> </amp-img>
+                </a>
+                <a class="social" href="{% url 'admin_product' %}" target="_blank">
+                        <amp-img class="social-amp-img" src="{% static 'icons/gear-icon.png' %}" width="30"
+                            height="30" layout="fixed" alt=""> </amp-img>
+                </a>
+            </div>
+        </nav>
+    </div>
+    <!--TOP NAV END-->
+    <!--BUTTO WHATS-->
+    <div class="whats">
+        <a href="https://wa.me/5521994534836" target="_blank">
+            <amp-img src="{% static 'icons/whats-icon.png' %}" width="100" height="100" layout="intrinsic" alt="whats">
+            </amp-img>
+        </a>
+    </div>
+        <!--BUTTON Chat-->
+    <div class="chat">
+        <a href="{% url 'chat' %}" target="_blank">
+            <amp-img src="{% static 'icons/chat-icon.png' %}" width="100" height="100" layout="intrinsic" alt="chat">
+            </amp-img>
+        </a>
+    </div>
+    <!--BLOCK-->
+    {% block content %} {% endblock %}
+    <!--BLOCK END -->
+    <!-- Start Footer -->
+    <div class="footer">
+        <footer>
+            <a href="https://c2view.com.br/">
+                <small style="color: rgba(255, 115, 0, 1);">
+                    © C2View
+                </small>
+            </a>
+        </footer>
+    </div>
+    <!-- End Footer -->
+</body>
+
+</html>

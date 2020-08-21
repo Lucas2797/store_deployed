@@ -1,0 +1,105 @@
+{% extends "desktop/base2.amp.html" %}
+{% load static %}
+
+{% block title %}
+    CheckOut
+{% endblock title %}
+    
+{% block content %}
+
+        <div class="checkout">
+            <table class="checkout">
+                <tr>  
+                    <td>
+                        <th class="home-text">Pedido</th>
+                        <th></th>
+                        <th>{{order}}</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </td>
+                </tr>
+                <tr class="checkout">
+                    <th class="checkout">Quantidade</th>
+                    <th class="checkout pl15">Produto</th>
+                    <th class="checkout">Modelo</th>
+                    <th class="checkout">Tamanho</th>
+                    <th class="checkout">Preço</th>
+                    <th class="checkout">Imagem</th>
+                </tr>
+                {% for item in order_items %}
+                <tr class="checkout">
+                    <td class="checkout">{{ item.quantity }} </td>
+                    <td><a class="checkout link" href="{% url 'detail_product' item.product.id %}"> {{item.product.nome}} </a></td>
+                    <td> {{item.product.model}} </td>
+                    <td class="checkout pl15"> {{item.product.model.tamanho}} </td>
+                    <td> {{item.get_item_total}} </td>
+                {% if item.product.images %}
+                <td><amp-img src="{{ item.product.images.first.image.url }}"
+                    width="80"
+                    height="80"
+                    layout="fixed"
+                    alt="">
+                </amp-img></td>
+                {% else %}
+                <td>Sem Imagem</td>
+                {% endif %}
+                <td class="pl15">
+                </td>
+            {% empty %}
+                <h1>You have not added any items yet.></h1>
+            {% endfor %}
+            <tr class="checkout">
+                <td></td>
+                <td></td>
+                <td>Total:</td>
+                <td></td>
+                <td class="total">{{existing_order.get_cart_total}}</td>
+            </tr>
+        </div>
+        <!-- FORM -->
+        <div class="form">
+            <h1 class="home-text">Cliente</h1>
+                <form method="POST"
+                    action-xhr="{% url 'checkout' %}">
+                    {% csrf_token %}
+                    <label class="text" for="nome">
+                        <span class="home-text">Nome:</span>
+                        <input type="text"
+                        name="nome"
+                        value="{{request.user}}"
+                        required>
+                    </label>
+                    <br>
+                    <br>
+                    <label class="text" for="email">
+                        <span class="home-text">Email:</span>
+                        <input type="email"
+                        name="email"
+                        required>
+                    </label>
+                    <br>
+                    <br>
+                    <label class="text" for="endereco">
+                        <span class="home-text">Endereço:</span>
+                        <input type="text"
+                        name="endereco"
+                        required>
+                    </label>
+                    <br>
+                    <br>
+                    <label class="text" for="phone">
+                        <span class="home-text">DDD+Telefone:</span>
+                        <input type="tel"
+                        name="phone"
+                        value="+5521"
+                        required>
+                        <br>
+                        <span>(entraremos em contato para confirmar o pedido)</span>
+                    </label>
+                    <br>
+                    <br>
+                    <input class="send" type="submit" value="finalizar a compra">
+                </form>
+        </div>
+{% endblock %}

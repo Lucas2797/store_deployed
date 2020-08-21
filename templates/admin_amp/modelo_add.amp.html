@@ -1,0 +1,12 @@
+{% extends "admin_amp/base.amp.html" %}
+
+{% block content %}
+    
+    <form method="POST" action-xhr="{% url 'add_modelo' %}">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">ALOW</button>
+    </form>
+
+        
+{% endblock %}

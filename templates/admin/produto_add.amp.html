@@ -1,0 +1,10 @@
+{% extends "admin/base.amp.html" %}
+{% block content %}
+
+    <form id="product-form" action-xhr="{% url 'add_product' %}" method="POST">
+        {% csrf_token %}
+        {{prod_form.as_p}}
+        <input type="submit" name="submit" value="Submit " />
+    </form>
+
+{% endblock content %}

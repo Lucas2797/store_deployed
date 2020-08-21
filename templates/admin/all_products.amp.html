@@ -1,0 +1,79 @@
+{% extends "admin/base.amp.html" %}
+{% load static %}
+{% block content %}
+<h1>ok</h1>
+<div class="tabling">
+    <table class="cart">
+      <tr class="first">
+        <th class="first">Produto</th>
+        <th class="first">Modelo</th>
+        <th class="first">Preco</th>
+        <th class="first">Estoque</th>
+        <th class="first">Imagem</th>
+        <th class="first">Histórico</th>
+        <th class="first">Deletar</th>
+        <th class="first">Atualizar</th>
+        
+      </tr>
+      {% for product in query %}
+      <tr class="cart">
+        <td class="cart"><a class="" href="{% url 'detail_product' product.id %}"> {{product.nome}} </a></td>
+        <td class="cart"> {{product.model}} </td>
+        <td class=" cart pl15"> {{product.preco}} </td>
+        <td class="cart">
+        {% for s in product.storage.all %} <p class="size">tamanho:{{s.tamanho}} = {{s.quantidade}}und</p>{% endfor %}
+        <p>total: {{product.get_storage_total}}</p>
+        </td>
+        {% if product.images %}
+          <td class="cart"><amp-img src="{{ product.images.first.image.url }}"
+            width="100"
+            height="100"
+            layout="fixed"
+            alt="">
+          </amp-img></td>
+        {% else %}
+          <td class="cart">Sem Imagem</td>
+        {% endif %}
+        <td class="cart">
+          Comprados:{{product.all_buyed}} <br>
+          Vendidos: {{product.all_selled}} <br>
+          Média: {{product.sell_percent}}%      
+        </td>
+        <td class="cart pl15">
+          <a href="{% url 'delete_product' product.id %}" data-balloon="remove this item from cart">
+            <amp-img width="30" height="30" layout=fixed src="{% static 'icons/delete-icon2.png' %}" ></amp-img>
+          </a>
+        </td>
+        <td class="cart pl15">
+          <a href="{% url 'update_product' product.id %}" data-balloon="remove this item from cart">
+            <amp-img width="30" height="30" layout=fixed src="{% static 'icons/update-icon.jpg' %}" ></amp-img>
+          </a>
+        </td>
+        </tr>
+      {% endfor %}
+
+    
+        {% if existing_order.get_cart_total != None %}
+          <tr class="total">
+              <td></td>
+              <td></td>
+              <td class="total">Total:</th>
+              <td class="total">{{existing_order.get_cart_total}}</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+        {% endif %}
+        </table>
+        <div class="cart-but">
+          <a class="buy" href="{% url 'list_product' %}" class="cart-but">
+            {% if order_items %}Continuar Comprando{% else %}De volta pra lista!! {% endif %}
+          </a>
+          {% if order_items %}
+            <a class="buy" href="{% url 'checkout' %}" class="cart-but">Finalizar Compra</a>
+          {% endif %}
+        </div>
+  </div>
+
+
+  {% endblock %}

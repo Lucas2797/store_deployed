@@ -1,0 +1,15 @@
+{% extends "admin/base.amp.html" %}
+
+{% block content %}
+    {{prod.storage.all}}
+    <h2>{{prod}}</h2>
+    <form method="POST" action-xhr="{% url 'add_storage' prod.id %}">
+        {% csrf_token %}
+        {{storage_form.as_p}}
+        <h2>{{storage_form.errors}}</h2>
+        <h2>{{storage_form.non_field_errors}}</h2>
+        <button type="submit">ALOW</button>
+    </form>
+
+        
+{% endblock %}

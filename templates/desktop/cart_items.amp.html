@@ -1,0 +1,63 @@
+{% extends "desktop/base2.amp.html" %}
+{% load static %}
+{% block content %}
+  <div class="tabling">
+    <table class="cart">
+      <tr class="first">
+        <th class="first">Quantidade</th>
+        <th class="first">Produto</th>
+        <th class="first">Modelo</th>
+        <th class="first">Tamanho</th>
+        <th class="first">Preco</th>
+        <th class="first">Imagem</th>
+        <th class="first">Delete</th>
+      </tr>
+      {% for item in order_items %}
+      <tr class="cart">
+        <td class="cart pl15">{{ item.quantity }} </td>
+        <td><a class=" cart link first" href="{% url 'detail_product' item.product.id %}"> {{item.product.nome}} </a></td>
+        <td class="cart"> {{item.product.model}} </td>
+        <td class=" cart pl15"> {{item.size.tamanho}} </td>
+        <td class="cart"> {{item.get_item_total}} </td>
+        {% if item.product.images %}
+          <td class="cart"><amp-img src="{{ item.product.images.first.image.url }}"
+            width="80"
+            height="80"
+            layout="fixed"
+            alt="">
+          </amp-img></td>
+        {% else %}
+          <td class="cart">Sem Imagem</td>
+        {% endif %}
+        <td class="cart pl15">
+          <a href="{% url 'delete_item' item.id %}" data-balloon="remove this item from cart">
+            <amp-img width="30" height="30" layout=fixed src="{% static 'icons/delete-icon2.png' %}" ></amp-img>
+          </a>
+        </td>
+        </tr>
+      {% endfor %}
+
+    
+        {% if existing_order.get_cart_total != None %}
+          <tr class="total">
+              <td></td>
+              <td></td>
+              <td class="total">Total:</th>
+              <td class="total">{{existing_order.get_cart_total}}</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+        {% endif %}
+        </table>
+        <div class="cart-but">
+          <a class="buy" href="{% url 'list_product' %}" class="cart-but">
+            {% if order_items %}Continuar Comprando{% else %}De volta pra lista!! {% endif %}
+          </a>
+          {% if order_items %}
+            <a class="buy" href="{% url 'checkout' %}" class="cart-but">Finalizar Compra</a>
+          {% endif %}
+        </div>
+  </div>
+
+{% endblock %}

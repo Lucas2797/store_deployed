@@ -1,0 +1,36 @@
+{% extends "admin/base.amp.html" %}{% load static %}
+{% block title %}
+  ADMIN
+{% endblock %}
+{% block content %}
+    <h1 class="test">test</h1>
+    <button>
+        <a href="{% url 'add_product' %}"> adicionar produto</a>
+    </button>
+    <br>
+    <button>
+        <a href="{% url 'add_modelo' %}"> adicionar MODELO</a>
+    </button>
+    <br>
+    <button type="button">
+        <a href="{% url 'home_product' %}"> HOME produto</a>
+    </button>
+    <h1 class="test">TEST</h1>
+
+    {% for p in query %}
+        <h1>{{p.nome}}, {{p.model}}</h1>
+        {% for pic in p.images.all %}
+            <img src="{{ pic.image.url }}">
+        {% endfor %}
+        <!--UPDATE BUTTON-->
+        <form action="{% url 'update_product' p.id %}">
+            <button type="submit"><i class="material-icons">sync</i></button>
+        </form>
+            <!-- DELETE BUTTON -->
+        <form action="{% url 'delete_product' p.id %}" method='post'>
+            {% csrf_token %}
+            <button type="submit" onclick="return confirm('Deseja deletar o produto?')"><i class="material-icons">delete</i></button>
+        </form>
+    {% endfor %}
+    <h1 class="test"> ok</h1>
+{% endblock %}

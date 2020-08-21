@@ -1,0 +1,148 @@
+                    ERROS DO SITE
+
+-PEDIDOS:
+verificar porque ta criando 2 pedidos a mais quando vai fazer o checkout
+
+-automatic-view:
+    retirar o next (done)
+    ativar form no modo janela (amp-iframe)
+
+-all orders (BACK) view:
+    link no endereço pro google maps
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CAMBIAR AS FUNÇOES PRA TAMANHO DE CALSA E RESTO(CAMISA E ETC)
+
+
+
+se for depositar calça ativar 38 a 46 de TAMANHO
+
+ativar o multiple choice field no tamanho
+
+
+
+CAMBIARO PHONEFIELD PRA CHARFIELD NUMBER
+
+
+ADICIONAR O DYNAMIC FILTER
+
+ADICIONAR OS QUERYS AOS MANAGERS E FINALIZAR ESSA PORRA
+
+
+
+<div class="filters"/>
+    ativar os filters por estilos de ROUPAS
+    click on calca list product so com CALÇAS
+    ativar Masculuno e Feminino
+
+
+
+Ativar um model quantity pra saber quantos daquele Item foram pedidos
+
+ativar 2 meios quantidade total de pedidos naquele Item (quantas vezes ele foi pedido no total)
+ativar quantitade naquele pedido especifico
+
+TENTAR STACK
+
+
+
+
+RECOMENDAR POSSIVEIS OPÇÕES PARA FORMAR CONJUNTO
+    ABRIU A PAGINA DA CAMISA TER CALÇAS E SHORTS RECOMENDADOS A ABAIXO
+    NA PAGINA DE CADASTRO DO PRODUTO 
+
+
+
+PAGINA DE PAGAMENTO EXPOR OS MEIOSDE PAGAMENTO
+
+
+
+                            LOGICA
+
+Produtos One to one com Items. e a quantidade de Item vai pelo campo quantity.
+Item many to many com Pedido (varios pedidos tem varios daqueles items)
+no Pedido voce tem uma lista de item e um is_ordered=False ao finalizar o pedido(is_ordered=True) a quantity daquele Item vai subtrair na quantity do produto
+
+
+
+
+
+
+
+
+
+
+
+
+                                      MODELS
+
+
+AS INFORMAÇÕES DO PRODUTO VAO NO CADASTRO DO PRODUTO
+    CADASTRO DO MODEL PRODUTO
+        DECIDIR O TIPO DE ROUPAS
+        PRECO
+        MALHA
+        TAMANHO
+        MASC E/OU FEM (DUPLO BOOLEAN FIELD)
+        ESGOTADO
+
+
+
+MODEL DE IMAGENS
+
+
+AS INFORMAÇÕES DO VENDEDOR VAO NA VENDA DO PRODUTO
+    CADASTRO DO MODEL VENDEDOR 
+        (NOME, CNT, MES DE ENTRADA, ATIVO OU NAO, DATA DE NASCIMENTO)
+
+
+
+
+
+
+
+
+GESTAO DE VENDAS
+    RELACIONADO A PRODUTO E FUNCIONARIO
+
+    FUNCIONARIO
+        VENDA TOTAL DO FUNCIONARIO
+            MEDIA (VALOR TOTAL/ HIT DE VENDAS)
+        COMISSIONAMENTO
+            PORCENTAGEM DO TOTAL
+                    VARIAR CONFORME OS BONUS (30.000, 15.000 E ETC.)
+        HIT DE VENDAS
+            CONTADOR NAQUELE NOME
+        TICKET MEDIO
+
+    PRODUTO
+        VENDA TOTAL DO PRODUTO
+        HIT DE VENDAS
+        
+
+
+
+            DONE
+
+
+
+LOGAR O USUARIO APOS DIGITAR O NOME APENAS
+    FAZER O CARRINHO COM BASE NESSE USUARIO LOGADO
+        ATIVAR SELECT PELO TAMANHO
+        ADICIONAR AO CARRINHO

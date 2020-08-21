@@ -1,0 +1,121 @@
+{% extends "amp/base.amp.html"%} {% load static %} {% block title %} PRODUTOS
+<{% endblock title %} {% block content %}
+
+    <div class="burger" role="button" on="tap:sidebar3.open" tabindex="0">
+        <h1 class="filter">Filtros</h1>
+    </div>
+    <div>
+        <amp-sidebar hidden class="sidebar2" id="sidebar3" layout="nodisplay" side="left">
+            <div role="button" aria-label="close sidebar" on="tap:sidebar3.close" tabindex="" class="close-sidebar">✕</div>
+            <ul class="sidebar">
+                <form method="GET" action="." target="_top">
+                    <div class="filter">
+                        <div class="filter-item">
+                            <h2 class="filter-text">Vestuário:</h2>
+                            <label class="" for="sex_query">
+                                <input name="sex_query" type="radio" value="Feminino">Feminino
+                                <input name="sex_query" type="radio" value="Masculino">Masculino
+                            </label>
+                            <h2 class="filter-text"> Modelo:</h2>
+                            <label for="model_query">
+                                <input type="radio" name="model_query" on='change:clothes_size.show, calsa_size.hide' value="VESTIDO">Vestido
+                                <input type="radio" name="model_query" on='change:clothes_size.hide, calsa_size.show' value="CALSA">Calsa
+                                <input type="radio" name="model_query" on='change:clothes_size.show, calsa_size.hide' value="CAMISA">Camisa<br>
+                                <input type="radio" name="model_query" on='change:clothes_size.show, calsa_size.hide' value="REGATA">Regata
+                                <input type="radio" name="model_query" on='change:clothes_size.show, calsa_size.hide' value="MACACAO">Macacão
+                                <input type="radio" name="model_query" on='change:clothes_size.show, calsa_size.hide' value="SHORT">Short
+                                <input type="radio" name="model_query" on='change:clothes_size.show, calsa_size.hide' value="INTIMA">Intima
+                            </label>
+                        </div>
+                        <div class="filter-item">
+                            <h2 class="filter-text">Quanto quer gastar:</h2>
+                            <div class="ranging">
+                                <input class="ranging" type="range" name="price_query" min="0" value="300" max="300" step="1" list="ticks">
+                                <p class="price" >0 &ensp;50 100 150 200 250 300</p>
+                                <datalist id="ticks">
+                                    <option>0</option>
+                                    <option>50</option>
+                                    <option>100</option>
+                                    <option>150</option>
+                                    <option>200</option>
+                                    <option>250</option>
+                                    <option>300</option>
+                                </datalist>
+                            </div> 
+                        </div>
+                        <div class="filter-item" id="clothes_size">
+                            <label class="filter-text" >Tamanho: <br>
+                                <input type="radio" name="size_query_all" value="P" >P
+                                <input type="radio" name="size_query_all" value="M" >M
+                                <input type="radio" name="size_query_all" value="G" >G
+                            </label>
+                        </div>
+                        <div class="filter-item calsa_size" id='calsa_size' hidden>
+                            <h2 class="filter-text" style="margin: 0;">Calsa:</h2>
+                            <div class="ranging">
+                                <input class="ranging" type="range" name="size_query_calsa" min="36" value="36" max="50" step="2" list="ticks2">
+                                <p class="price"> 36 38 40 42 44 46 48 50</p>
+                                <datalist id="ticks2">
+                                    <option>36</option>
+                                    <option>38</option>
+                                    <option>40</option>
+                                    <option>42</option>
+                                    <option>44</option>
+                                    <option>46</option>
+                                    <option>48</option>
+                                    <option>50</option>
+                                </datalist>
+                            </div> 
+                        </div>
+                        <br>
+                        <input class="buy" type="submit">
+                    </div>
+                </form>
+            </ul>
+          </nav>
+        </amp-sidebar>
+    </div>
+    <h1 class="text-h1">Produtos</h1>
+    <div class="all_products">
+        {% for p in query %}
+        <div class="product">
+            <!--IMAGES-->
+            <div class='img'>
+                <amp-carousel lightbox controls autoplay delay="3000" 
+                width="100"
+                height="100"
+                layout="responsive"
+                type="slides">
+                {% for pic in p.images.all %}
+                    <amp-img class="img" src="{{ pic.image.url }}"
+                    width="150"
+                    height="180"
+                    layout="responsive"
+                    alt="{{ p.nome }}">
+                    </amp-img>
+                {% endfor %}
+                </amp-carousel>
+            </div>
+            <!-- INFOS -->
+            <div class='infos'>
+                <a class='infos' href="{% url 'detail_product' p.id %}">
+                    <h3 class="product-text"> {{p.nome}} </h3>
+                    <p class="infos"> R$: {{ p.preco }} <br> TAMANHO: {{ p.model.tamanho }}</p>
+                </a>
+                <!--ADD TO CART-->    
+                <form class="sizing" method="GET" action="{% url 'add_to_cart' p.id %}" target="_top">
+                    {% csrf_token %}
+                    {% for e in p.storage.all %}
+                        <input class="size_radio" type="radio" name="size" value="{{e.tamanho}}" required ><p class="tamanhos" id="field"> {{ e.tamanho }}</p>
+                    {% endfor %}
+                    <input class="size-but" type="submit" value="">
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    </body>
+
+    {% endblock %}
+
+    </html>

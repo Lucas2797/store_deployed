@@ -1,0 +1,45 @@
+{% extends "admin_amp/base.amp.html" %}
+{% block title %}
+  ADMIN
+{% endblock %}
+{% block content %}
+    <div class="buttons">
+        <div class="sub">
+            <h3 class="filter-text center" >produtos</h3>
+            <button class="main">
+                <a class="main filter-text" href="{% url 'add_product' %}>">  Adicionar Produto</a>
+            </button>
+            <button class="main">
+                <a class="main filter-text" href="{% url 'all_products' %}"> Lista de Produtos</a>
+            </button>
+        </div>
+        <div class="sub">
+            <h3 class="filter-text center" >BANNERS</h3>
+            <button class="main">
+                <a class="main filter-text" href="{% url 'add_banner' %}"> Adicionar Banner</a>
+            </button>
+            <button class="main">
+                <a class="main filter-text center" href="{% url 'add_banner' %}"> Lista de Banners</a>
+            </button>
+        </div>
+        <div class="sub">
+            <h3 class="filter-text center" >Pedidos</h3>
+            <button class="main">
+                <a class="main filter-text" href="{% url 'home_product' %}"> TODOS OS PEDIDOS</a>
+            </button>
+            <button class="main">
+                <a class="main filter-text" href="{% url 'home_product' %}"> PEDIDOS PENDENTES</a>
+            </button>
+        </div>
+        <div class="sub">
+            <h3 class="filter-text center" >Contas</h3>
+            <button class="main">
+                <a class="main filter-text" href="{% url 'logout' %}"> logout</a>
+            </button>
+            <button class="main">
+                <a class="main filter-text" href="{% url 'register' %}">Registrar</a>
+            </button>
+        </div>
+    </div>
+
+{% endblock %}
