@@ -402,7 +402,7 @@ def get_client_ip(request):
 
 @login_required
 def test_view(request):
-    var = get_client_ip()
+    var = get_client_ip(request)
     context = {
         'var': var,
     }
