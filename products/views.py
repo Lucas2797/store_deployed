@@ -219,7 +219,9 @@ def add_product(request):
     if request.method == 'POST':
         prod_form = ProdutoForm(request.POST)
         if prod_form.is_valid():
-            prod = prod_form.save()
+            prod = prod_form.save(commit=False)
+            prod.save()
+            print('estranho')
             return redirect(reverse('update_product', kwargs={'id': prod.id}))
 
     else:

@@ -72,12 +72,11 @@ def delete_from_cart(request, id):
 
 def get_user_pending_order(request):
     # get order for the correct user
-    user_profile = get_object_or_404(User, username=request.user)
+    user_profile = get_object_or_404(User, username=request.user.username)
     pedido = Pedido.objects.filter(owner=user_profile, is_ordered=False)
     if pedido:
         return pedido[0]
     else:
-        print('ok')
         pedido = Pedido.objects.get_or_create(owner=user_profile, is_ordered=False)
         return pedido
 
@@ -135,17 +134,21 @@ def success(request):
     order_items = existing_order.order_items.filter(is_ordered=False)
     for item in order_items:
         e1 = Estoque.objects.get(storage=item)
-        e1.quantidade -= 1
+        e1.quantidade -= item.quantity
         e1.save()
         item.is_ordered=True
         item.save()
+
+    context = {
+        'existing_order': existing_order,
+    }
     
     if request.user_agent.is_mobile:
-        return render(request, 'amp/success.amp.html')
+        return render(request, 'amp/success.amp.html', context)
     elif request.user_agent.is_pc:
-        return render (request, 'desktop/success.amp.html')
+        return render (request, 'desktop/success.amp.html', context)
     else:
-        return render (request, 'amp/success.amp.html')
+        return render (request, 'amp/success.amp.html', context)
 
 
 
@@ -158,7 +161,12 @@ def all_orders(request):
     context = {
         'query': query,
     }
-    return render(request, 'admin/all_orders.amp.html', context)
+    if request.user_agent.is_mobile:
+        return render(request, 'admin_amp/all_orders.amp.html', context)
+    elif request.user_agent.is_pc:
+        return render (request, 'admin/all_orders.amp.html', context)
+    else:
+        return render (request, 'admin/all_orders.amp.html', context)
 
 
 def order_detail(request, id):

@@ -3,6 +3,8 @@ from products.models import Produto, Estoque
 from django.contrib.auth import get_user_model
 from .managers import ItemManager
 from django.core.exceptions import ValidationError
+from .extras import generate_order_id
+
 
 User = get_user_model()
 
@@ -12,6 +14,8 @@ class Pedido(models.Model):
     is_ordered = models.BooleanField(default=False)
     date_ordered = models.DateTimeField(auto_now=True)
 
+
+    @property
     def get_cart_total(self):
         total = 0
         for item in self.order_items.all():
@@ -22,9 +26,13 @@ class Pedido(models.Model):
     def items(self):
         return Item.objects.filter(order=self)
 
-
     def __str__(self):
         return '{0} - {1}'.format(self.owner, self.ref_code)
+
+    def save(self, *args, **kwargs):
+        if not self.ref_code:
+            self.ref_code = generate_order_id()
+        super().save(*args, **kwargs)
 
 
 class Item(models.Model):

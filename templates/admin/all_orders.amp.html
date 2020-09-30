@@ -12,13 +12,13 @@
         <th class="first">Produtos</th>
         <th class="first">Cliente</th>
         <th class="first">Deletar</th>
-        <th class="first">Status</th>
+        <th class="first">Pedido</th>
       </tr>
       {% for order in query %}
       <tr class="cart">
         <td class="cart"><a class="" href="{% url 'order_detail' order.id %}"> {{order}} </a></td>
         <td class="cart"> {{order.ref_code}} </td>
-        <td class=" cart pl15"> </td>
+        <td class=" cart pl15">{{order.get_cart_total}} </td>
         <td class="cart">
           {% for item in order.order_items.all %} 
             <p class="size">{{item.product.nome}} = {{item.quantity}}und</p>
