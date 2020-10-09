@@ -1,7 +1,7 @@
 {% extends "desktop/base2.amp.html" %} {% block title %}Home {% endblock title %} {% block content %}
 
 <!-- first gallery-->
-    <div class="first top-0">
+    <div class="first top-0" amp-fx="fly-in-top fade-in" data-fly-in-distance="40%" data-duration="2000ms">
             <amp-carousel class="home-gallery" lightbox controls autoplay delay="3000" width=340 height="100" layout="responsive" type="slides">
                 {% for B in filter1 %}
                     <div class="slide">
@@ -21,7 +21,11 @@
     <!--double gallery -->
     <div class="line">
         {% for b in filter2|slice:":2" %}
-        <div class="column">
+        {% if b.id == 1 %}
+            <div class="column" amp-fx="fade-in fly-in-left" data-fly-in-distance="40%" data-duration="2000ms">
+        {% else %}
+        <div class="column" amp-fx="fade-in fly-in-right" data-fly-in-distance="40%" data-duration="2000ms">
+        {% endif %}
             <amp-carousel lightbox class="mini-gallery" width="650" height="400" type="slides">
                 {% for pic in b.banner_image.all %}
                     <amp-img class="" src="{{ pic.imagem.url }}" width="600" height="800" layout="fill" alt=""></amp-img>
@@ -32,6 +36,9 @@
         {% endfor %}
 </div>
     <!--double gallery END -->
+    <!--  -->
+
+
     <!--Google Maps-->
     <amp-iframe width="1400" height="400"
     sandbox="allow-scripts allow-same-origin"

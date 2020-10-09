@@ -143,6 +143,7 @@ class Estoque(models.Model):
     updated_time = models.DateTimeField(auto_now_add=True)
     objects = EstoqueManager()
 
+
     def __str__(self):
         return '%s - %s - %s' % (self.product,self.tamanho, self.quantidade)
 

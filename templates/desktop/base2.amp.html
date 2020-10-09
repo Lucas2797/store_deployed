@@ -21,6 +21,8 @@
         src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
     <script async custom-element="amp-instagram" src="https://cdn.ampproject.org/v0/amp-instagram-0.1.js"></script>
     <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+    <script async custom-element="amp-fx-collection" src="https://cdn.ampproject.org/v0/amp-fx-collection-0.1.js"></script>
+
     <!--AMP ANALYTICS-->
     <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
     <!-- Google imports -->
@@ -199,6 +201,7 @@
             background-repeat: no-repeat;
             border-radius: 50%;
             background-size: 30%;
+            text-decoration: none;
             padding-top: 20px;
             padding-bottom: 0px;
             background-position: -10px;
@@ -512,6 +515,8 @@
             text-decoration: none;
             margin: 4px 2px;
             cursor: pointer;
+            transition-property: padding;
+            transition-duration: 0.2s;
         }
 
         input.filter-but:hover{
@@ -827,7 +832,7 @@
         </script>
     </amp-analytics>
     <!--TOP NAV-->
-    <div class="topnav">
+    <div class="topnav" amp-fx="float-in-top">
         <nav class="menu">
             <div class="links">
                 <a class='jr' href="{% url 'home_product' %}">JR</a>
@@ -841,7 +846,7 @@
                 <!--social-->
             <div class="social">
                 <a class="social" href="https://www.instagram.com/jr_modas_marica/" target="_blank">
-                    <amp-img class="social-amp-img" src="{% static 'home/insta-icon.png' %}" width="30" height="30"
+                    <amp-img class="social-amp-img" src="{% static 'icons/insta-icon.png' %}" width="30" height="30"
                         layout="fixed" alt=""> </amp-img>
                 </a>
                 <a class="social" href="https://www.facebook.com/jrmoda" target="_blank">

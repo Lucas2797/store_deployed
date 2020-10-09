@@ -10,7 +10,7 @@
     <h4 style="color: red;">{{storage_form.errors}}</h4>
     <h2 class="filter-text">{{prod}}</h2><br>
     <input name='table' type="radio" value="model_on" on='change:model-form.show, storage-form.hide, product-form.hide, img-form.hide, images.hide, storage-div.hide'>Criar Modelo
-    <form id="model-form" method="POST" action-xhr="{% url 'add_modelo' %}" hidden>
+    <form id="model-form" method="POST" action-xhr="https://{{ request.META.HTTP_HOST }}{% url 'add_modelo' %}" hidden>
     <fieldset>
         {% csrf_token %}
         {{model_form.as_p}}
@@ -22,7 +22,7 @@
 
     <h2 class="filter-text"> Alterar Produto</h2>
     <input name='table' type="radio" value="img_on" on='change:product-form.show, storage-form.hide, model-form.hide, img-form.hide, images.hide, storage-div.hide'>Alterar produto
-    <form id='product-form' method='POST' action-xhr="{% url 'update_product' prod.id %}" hidden>
+    <form id='product-form' method='POST' action-xhr="https://{{ request.META.HTTP_HOST }}{% url 'update_product' prod.id %}" hidden>
         <fieldset>
         {% csrf_token %}
         {{prod_form.as_p}}
@@ -33,7 +33,7 @@
 
     <h2 class="filter-text">Imagem:</h2>
     <input name='table' type="radio" value="img_on" on='change:img-form.show, images.show, storage-form.hide,  model-form.hide, product-form.hide, storage-div.hide'>Adicionar img
-    <form id="img-form" method='POST' action-xhr="{% url 'update_product' prod.id %}" enctype="multipart/form-data" target="_top" hidden>
+    <form id="img-form" method='POST' action-xhr="https://{{ request.META.HTTP_HOST }}{% url 'update_product' prod.id %}" enctype="multipart/form-data" target="_top" hidden>
         <fieldset>
         {% csrf_token %}
             <label for="Image">
@@ -59,7 +59,7 @@
         <h4 class="">Quantidade {{storage.quantidade}} Tamanho {{storage.tamanho}}</h4>
     {% endfor %}
     </div>
-    <form id="storage-form" method="POST" action-xhr="." target="_top" hidden>
+    <form id="storage-form" method="POST" action-xhr="https://{{ request.META.HTTP_HOST }}{% url 'update_product' prod.id %}" target="_top" hidden>
         <fieldset>
             {% csrf_token %}
             <p><label for="id_product">Product:</label> <select name="product" required id="id_product">
