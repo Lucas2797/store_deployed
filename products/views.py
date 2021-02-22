@@ -5,13 +5,13 @@ from django.forms import modelformset_factory
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
 from cart.models import Pedido, Item
 from accounts.decorators import allowed_users 
 from django.db.models import Q
 from cart.models import Item, Pedido
 from django.http import HttpResponseRedirect
 from django.forms import inlineformset_factory
+from django.utils import timezone
 
 
 
@@ -20,9 +20,11 @@ def amp_home(request):
     for b in Banner.objects.filter(tipo='Inicial'):
         filter1 = b.banner_image.all()
     filter2 = Banner.objects.filter(tipo='Mini')
+    filter3 = Produto.objects.filter(storage__updated_time__gte=timezone.now() - timezone.timedelta(days=15))
     context = {
         'filter1': filter1,
         'filter2': filter2,
+        'filter3': filter3,
         }
     if request.user_agent.is_mobile:
         return render(request, 'amp/home.amp.html', context)
@@ -261,7 +263,11 @@ def add_storage(request, id):
         return render (request, 'admin_amp/storage_add.amp.html', context)
     
 
+def company_view(request):
+    pass
 
+def suport_view(request):
+    pass
 
 @login_required
 @allowed_users(allowed_ones=['Admin', 'Vendedor'])

@@ -11,6 +11,8 @@ urlpatterns = [
     path('detail/<int:id>', views.detail_view, name='detail_product'),
     path('contact/', views.contact_view, name='contact'),
     path('chat/', views.chat_view, name='chat'),
+    path('company/', views.company_view, name='company'),
+    path('suport/', views.suport_view, name='suport'),
     #test#
     path('test/', views.test_view, name='test_view'),
     #BACK#

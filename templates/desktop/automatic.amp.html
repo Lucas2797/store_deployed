@@ -1,7 +1,7 @@
 {% extends 'desktop/base2.amp.html' %}
 {% block content %}
     <div class="automatic">
-        <form class="automatic" method="POST" action-xhr="{% url 'automatic' %}">
+        <form class="automatic" method="POST" action-xhr="{% url 'automatic' %}" target="_blank">
             {% csrf_token %}
             <label for="username">Olá, 
                 <input name="username" type="text">

@@ -1,51 +1,126 @@
-{% extends "desktop/base2.amp.html" %} {% block title %}Home {% endblock title %} {% block content %}
+{% extends "desktop/base2.amp.html" %} {% block title %}JR Modas {% endblock title %} {% block content %}
 
-<!-- first gallery-->
-    <div class="first top-0" amp-fx="fly-in-top fade-in" data-fly-in-distance="40%" data-duration="2000ms">
-            <amp-carousel class="home-gallery" lightbox controls autoplay delay="3000" width=340 height="100" layout="responsive" type="slides">
+
+
+    <div class="loading">
+        <!-- first gallery-->
+        <div class="first top-0" amp-fx="fade-in fly-in-top" data-fly-in-distance="40%" data-duration="2000ms">
+            <amp-carousel class="home-gallery" lightbox controls autoplay delay="3000" width=340 height="80"
+                layout="responsive" type="slides">
                 {% for B in filter1 %}
-                    <div class="slide">
-                        <amp-img class="cover" src="{{B.imagem.url}}"  width="400" height="100" layout="fill" alt=""></amp-img>
-                    </div>
+                <div class="slide">
+                    <amp-img class="cover" src="{{B.imagem.url}}" width="400" height="100" layout="fill" alt=""></amp-img>
+                </div>
                 {% endfor %}
             </amp-carousel>
-    </div>
-<!-- first gallery END-->
-    
-    <!--TEXT AREA-->
-    <div class="home-text">
-        <h1 class="">Bem Vindo</h1>
-        <p class="">a JR MODAS</p>
-    </div>
-    <!--TEXT AREA end -->
-    <!--double gallery -->
-    <div class="line">
-        {% for b in filter2|slice:":2" %}
-        {% if b.id == 1 %}
-            <div class="column" amp-fx="fade-in fly-in-left" data-fly-in-distance="40%" data-duration="2000ms">
-        {% else %}
-        <div class="column" amp-fx="fade-in fly-in-right" data-fly-in-distance="40%" data-duration="2000ms">
-        {% endif %}
-            <amp-carousel lightbox class="mini-gallery" width="650" height="400" type="slides">
-                {% for pic in b.banner_image.all %}
-                    <amp-img class="" src="{{ pic.imagem.url }}" width="600" height="800" layout="fill" alt=""></amp-img>
-                {% endfor %}
-            </amp-carousel>
-            <a class="column link" href="{{b.first_banner_image.link}}"><h2 class="home-text">{{ b.nome }}</h2></a>
         </div>
-        {% endfor %}
-</div>
-    <!--double gallery END -->
-    <!--  -->
+        <!-- first gallery END-->
 
+        <!--TEXT AREA-->
+        <div class="home-text">
+            <h1 class="">Bem Vindo</h1>
+            <p class="">a JR MODAS</p>
+        </div>
+        <!--TEXT AREA end -->
+        <!--double gallery -->
+        <div class="line">
+            {% for b in filter2|slice:":2" %}
+            {% if b.id == 1 %}
+            <div class="column" amp-fx="fade-in fly-in-left" data-fly-in-distance="40%" data-duration="2000ms">
+                {% else %}
+                <div class="column" amp-fx="fade-in fly-in-right" data-fly-in-distance="40%" data-duration="2000ms">
+                    {% endif %}
+                    <amp-carousel lightbox class="mini-gallery" width="550" height="400" type="slides">
+                        {% for pic in b.banner_image.all %}
+                        <amp-img class="" src="{{ pic.imagem.url }}" width="600" height="800" layout="fill" alt="">
+                        </amp-img>
+                        {% endfor %}
+                    </amp-carousel>
+                    <a class="column link" href="{{b.first_banner_image.link}}">
+                        <h2 class="home-text">{{ b.nome }}</h2>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+            <!--double gallery END -->
+            <!-- NEWS -->
+                <div class="home-text">
+                    <h1>Novidades</h1>
+                </div>
+                <!--IMAGES-->
+                {% for p in filter3 %}
+                <div class="product">
+                    <!--IMAGES-->
+                    <div class='img'>
+                        <amp-carousel lightbox controls autoplay delay="3000" width="250"
+                        height="250"
+                        layout="responsive"
+                        type="slides">
+                        {% for pic in p.images.all %}
+                            <amp-img src="{{ pic.image.url }}"
+                            width="250"
+                            height="150"
+                            layout="responsive"
+                            alt="{{ p.nome }}">
+                            </amp-img>
+                        {% endfor %}
+                        </amp-carousel>
+                    </div>
+                    <!-- INFOS -->
+                    <a class='link' href="{% url 'detail_product' p.id %}">
+                        <h3 class="home-text text-h1"> {{p.nome}} </h3>
+                    </a>
+                    <div class='infos'>
+                        <a class='infos' href="{% url 'detail_product' p.id %}">
+                            <p class="infos"> R$: {{ p.preco }}</p>
+                        </a>
+                        <form class="sizing" method="GET" action="{% url 'add_to_cart' p.id %}" target="_top">
+                            {% csrf_token %}
+                            {% for e in p.storage.all %}
+                                <input class="size_radio" type="radio" name="size" value="{{e.tamanho}}" required ><p class="tamanhos" id="field"> {{ e.tamanho }}</p>
+                            {% endfor %}
+                            <input class="size-but" type="submit" value="">
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            <!-- NEWS END -->
+            <div class="home-text">
+                <h1>test</h1>
+            </div>
+            <amp-base-carousel
+            loop="true"
+            height="450"
+            layout="fixed-height"
+            visible-count="(min-width: 1150px) 5, (min-width: 700px) 2, 1"
+            advance-count="(min-width: 1150px) 3, (min-width: 700px) 2, 1">
+            {% for p in filter3 %}
+                <div>
+                    <h2>{{p.nome}}</h2>
 
-    <!--Google Maps-->
-    <amp-iframe width="1400" height="400"
-    sandbox="allow-scripts allow-same-origin"
-    layout="responsive"
-    frameborder="0"
-    src="https://maps.google.com/maps?width=1400&amp;height=600&amp;hl=en&amp;q=Av%20Carlos%20mariguela%20-%20RJ,%20737%20loja%202%20Marica+(JRModas)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
-    </amp-iframe>
-<!--Footer (testar no base)-->
+                      {% for pic in p.images.all %}
+                        <amp-img  src="{{ pic.image.url }}"
+                        width="200"
+                        height="200"
+                        layout="fixed"
+                        alt="">
+                        </amp-img>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+                <button slot="next-arrow" class="carousel-next" aria-label="Next">
+                AFTER
+                </button>
+                <button slot="prev-arrow" class="carousel-prev" aria-label="Previous">
+                PREV
+                </button>
+            </amp-base-carousel>
 
-{% endblock %}
+            <!-- AMP INSTAGRAM -->
+
+            <!-- AMP INSTAGRAM END -->
+            <!--Google Maps-->
+    </div>
+
+    {% endblock %}

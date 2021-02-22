@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import Q
+from django.utils import timezone
 
 class ProdutoManager(models.Manager):
     def price_low(self, preco):
@@ -39,3 +40,11 @@ class ProdutoManager(models.Manager):
 class EstoqueManager(models.Manager):
     def size_lte(self, size):
         return self.filter(product__model__publico='Crianca', tamanho__lte=size)
+
+    def is_new(self):
+        return self.filter(updated_time__gte=(timezone.now() - timezone.timedelta(days=15)))
+
+
+        # d1 = timezone.now() - self.updated_time
+        # if d1.days <= 15:
+        #     return True

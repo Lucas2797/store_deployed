@@ -3,6 +3,7 @@ from django.template.defaultfilters import slugify
 from .managers import ProdutoManager, EstoqueManager
 from phonenumber_field.modelfields import PhoneNumberField
 from django.core.exceptions import ValidationError
+from django.utils import timezone
 
 
 class Modelo(models.Model):
