@@ -12,7 +12,6 @@ gunicorn==20.0.4
 httpie==2.2.0
 idna==2.10
 phonenumbers==8.12.6
-Pillow==7.2.0
 psycopg2==2.8.5
 Pygments==2.6.1
 pytz==2020.1
@@ -22,3 +21,4 @@ ua-parser==0.10.0
 urllib3==1.25.9
 user-agents==2.1
 whitenoise==5.1.0
+
